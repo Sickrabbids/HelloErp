@@ -19,7 +19,7 @@ public class test {
 	public int test() {
 		System.out.println("test");
 		int test=t.heha();
-		request.setAttribute("test", test);
+	
 		return test;
 	}
 

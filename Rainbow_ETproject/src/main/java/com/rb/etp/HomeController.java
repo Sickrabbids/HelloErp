@@ -35,9 +35,17 @@ public class HomeController {
 		int i=tt.test();
 		
 		System.out.println("테스트중입니다"+i);
-		
+		mav.addObject("test", i);
 		mav.setViewName("home");
 		
+		return mav;
+	}
+	@RequestMapping(value = "/empList", method = RequestMethod.GET)
+	public ModelAndView empList() {
+		mav=new ModelAndView();
+		
+		
+		mav.setViewName("employmentList");
 		return mav;
 	}
 	
