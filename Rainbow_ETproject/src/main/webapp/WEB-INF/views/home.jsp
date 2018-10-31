@@ -15,9 +15,7 @@
 <div><a href="#">아무거나6</a></div>
 <<<<<<< HEAD
 <div><p>안녕 하십니까 우리가바로 ~~~~ </p></div>
-=======
+
 <div>아무거나입니다.</div>
->>>>>>> branch 'master' of https://github.com/Sickrabbids/HelloErp.git
-<P>  The time on the server is ${serverTime}. </P>
 </body>
 </html>
