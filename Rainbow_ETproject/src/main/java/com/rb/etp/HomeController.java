@@ -37,6 +37,7 @@ public class HomeController {
 		System.out.println("테스트중입니다"+i);
 		
 		mav.setViewName("home");
+	
 		
 		return mav;
 	}
