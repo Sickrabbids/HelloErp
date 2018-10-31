@@ -9,8 +9,8 @@
 <h1>
 	Hello world!  
 </h1>
-<h1>테스트 값은 제발 됬으면 좋겠습니다. .. ${test} .. 입니다.</h1>
-
+<h1>. .. ${test} .. 입니다.</h1>
+<div><a href="#">아무거나</a></div>
 
 <P>  The time on the server is ${serverTime}. </P>
 </body>
