@@ -6,8 +6,8 @@
 
 <mapper namespace="com.rb.etp.Dao.Iemp">
 
-<select id="heha" resultType="int" >
-		select count(m_id) from member
+<select id="getEmpList" resultType="EmpDto" >
+		SELECT * FROM EMP WHERE E_ID='heo'
 	</select>
 
 </mapper>

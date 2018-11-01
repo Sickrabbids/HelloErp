@@ -27,9 +27,12 @@ public class HomeController {
 	
 	@Autowired
 		test tt;
-	@Autowired	
+	
+	@Autowired
 	Emp emp;
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	
+	
+	@RequestMapping(value = "/empList", method = RequestMethod.GET)
 	public ModelAndView home() {
 		
 		mav=new ModelAndView();
@@ -43,11 +46,11 @@ public class HomeController {
 		
 		return mav;
 	}
-	@RequestMapping(value = "/empList", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView empList() {
 		mav=new ModelAndView();
-		emp.empList();
-		
+		mav=emp.empList();
+		mav.setViewName("employmentList");
 		return mav;
 	}
 	
