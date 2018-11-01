@@ -4,4 +4,6 @@ public interface testt {
 
 	int heha();
 
+	void empList();
+
 }

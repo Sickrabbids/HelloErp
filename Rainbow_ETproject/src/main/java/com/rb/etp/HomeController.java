@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.rb.etp.services.Emp;
 import com.rb.etp.services.test;
 
 
@@ -26,7 +27,8 @@ public class HomeController {
 	
 	@Autowired
 		test tt;
-	
+	@Autowired	
+	Emp emp;
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home() {
 		
@@ -43,9 +45,8 @@ public class HomeController {
 	@RequestMapping(value = "/empList", method = RequestMethod.GET)
 	public ModelAndView empList() {
 		mav=new ModelAndView();
+		emp.empList();
 		
-		
-		mav.setViewName("employmentList");
 		return mav;
 	}
 	
