@@ -14,18 +14,18 @@
 <title>SB Admin 2 - Bootstrap Admin Theme</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="resources/vendor/bootstrap/css/bootstrap.min.css"
+<link href="resources/test/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <!-- MetisMenu CSS -->
-<link href="resources/vendor/metisMenu/metisMenu.min.css"
+<link href="resources/test/vendor/metisMenu/metisMenu.min.css"
 	rel="stylesheet">
 
 <!-- Custom CSS -->
-<link href="resources/dist/css/sb-admin-2.css" rel="stylesheet">
+<link href="resources/test/dist/css/sb-admin-2.css" rel="stylesheet">
 
 <!-- Custom Fonts -->
-<link href="resources/vendor/font-awesome/css/font-awesome.min.css"
+<link href="resources/test/vendor/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -227,13 +227,12 @@ vertical-align:middle;
 										<th>행추가</th>
 										<th>사번</th>
 										<th>이름</th>
-										<!-- <th>직급</th>
+										<th>직급</th>
 										<th>부서</th>
-										<th>부서번호</th> -->
 									</tr>
 								</thead>
 								<tbody id='test'>
-									<tr>
+									<!-- <tr>
 										<td><button class='btn btn-primary btn-xs'onclick="add_row()"><span class='glyphicon glyphicon-arrow-up'></span></button><br /><button class='btn btn-primary btn-xs' onclick="add_drow()"><span class='glyphicon glyphicon-arrow-down'></span></button></td>
 										<td>사번</td>
 										<td><a href="#">원장선생님</a></td>
@@ -241,13 +240,15 @@ vertical-align:middle;
 										<td>1949-10-02</td>
 										<td>0A-15-01</td>
 									</tr>
-
+ -->
 
 									<c:forEach var="board" items="${test}">
 										<tr>
 		<td><button class='btn btn-primary btn-xs'onclick="add_row()"><span class='glyphicon glyphicon-arrow-up'></span></button><br /><button class='btn btn-primary btn-xs' onclick="add_drow()"><span class='glyphicon glyphicon-arrow-down'></span></button></td>
 											<td >${board.e_code}</td>
 											<td >${board.e_name}</td>
+											<td >${board.rank_name}</td>
+											<td >${board.dept_name}</td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -289,7 +290,7 @@ vertical-align:middle;
 							<script type="text/javascript">
 								function popupOpen() {
 
-									var popUrl = "empinsert"; //팝업창에 출력될 페이지 URL
+									var popUrl = "empinsertForm"; //팝업창에 출력될 페이지 URL
 
 									var popOption = "width=1200, height=900, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
 
@@ -328,16 +329,16 @@ vertical-align:middle;
 	<!-- /#wrapper -->
 
 	<!-- jQuery -->
-	<script src="resources/vendor/jquery/jquery.min.js"></script>
+	<script src="resources/test/vendor/jquery/jquery.min.js"></script>
 
 	<!-- Bootstrap Core JavaScript -->
-	<script src="resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="resources/test/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 	<!-- Metis Menu Plugin JavaScript -->
-	<script src="resources/vendor/metisMenu/metisMenu.min.js"></script>
+	<script src="resources/test/vendor/metisMenu/metisMenu.min.js"></script>
 
 	<!-- Custom Theme JavaScript -->
-	<script src="resources/dist/js/sb-admin-2.js"></script>
+	<script src="resources/test/dist/js/sb-admin-2.js"></script>
 	<script>
 		function add_row() {
 			var tr = $(this);
@@ -349,13 +350,11 @@ vertical-align:middle;
 			var cell3 = row.insertCell(2);
 			var cell4 = row.insertCell(3);
 			var cell5 = row.insertCell(4);
-			var cell6 = row.insertCell(5);
 			cell1.innerHTML = "<td><button class='btn btn-primary btn-xs' onclick='add_row()'><span class='glyphicon glyphicon-arrow-up'></span></button><br/><button class='btn btn-primary btn-xs' onclick='add_drow()'><span class='glyphicon glyphicon-arrow-down'></span></button>	</td>";
 			cell2.innerHTML = "사번";
 			cell3.innerHTML = "<a href='#'>된당</a>";
 			cell4.innerHTML = "테스트";
 			cell5.innerHTML = "테스트";
-			cell6.innerHTML = "테스트";
 		}
 		function add_drow() {
 			var my_tbody = document.getElementById('test');
@@ -366,13 +365,11 @@ vertical-align:middle;
 			var cell3 = row.insertCell(2);
 			var cell4 = row.insertCell(3);
 			var cell5 = row.insertCell(4);
-			var cell6 = row.insertCell(5);
 			cell1.innerHTML = "<td><button class='btn btn-primary btn-xs' onclick='add_row()'><span class='glyphicon glyphicon-arrow-up'></span></button><br/><button class='btn btn-primary btn-xs' onclick='add_drow()'><span class='glyphicon glyphicon-arrow-down'></span></button>	</td>";
 			cell2.innerHTML = "사번";
 			cell3.innerHTML = "<a href='#'>된당</a>";
 			cell4.innerHTML = "테스트";
 			cell5.innerHTML = "테스트";
-			cell6.innerHTML = "테스트";
 		}
 	</script>
 </body>

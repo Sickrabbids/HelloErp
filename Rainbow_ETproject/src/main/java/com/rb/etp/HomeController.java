@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.rb.etp.bean.EmpDto;
 import com.rb.etp.services.Emp;
 import com.rb.etp.services.test;
 
@@ -51,6 +52,25 @@ public class HomeController {
 		mav=new ModelAndView();
 		mav=emp.empList();
 		mav.setViewName("employmentList");
+		return mav;
+	}
+	@RequestMapping(value = "/empinsertForm")
+	public ModelAndView empinsertForm() {
+		mav=new ModelAndView();
+		mav.setViewName("empinsertForm");
+		return mav;
+	}
+	@RequestMapping(value = "/empinsert")
+	public  ModelAndView empinsert(EmpDto eDto) {
+		System.out.println(eDto.getE_m_id());
+		System.out.println(eDto.getE_name());
+		mav=new ModelAndView();
+		mav=emp.empinsert(eDto);
+		
+		
+		
+		
+		
 		return mav;
 	}
 	

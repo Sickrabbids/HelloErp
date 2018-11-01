@@ -27,6 +27,13 @@ public class Emp {
 		return mav;
 	}
 
+
+	public ModelAndView empinsert(EmpDto eDto) {
+		mav=new ModelAndView();
+		ie.insertemp(eDto);
+		return mav;
+	}
+
 	
 	
 }

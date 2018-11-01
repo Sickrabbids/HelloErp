@@ -16,9 +16,25 @@ public class EmpDto {
   private String e_bigo;
   private String e_basicpay;
   private String e_state;
+  private String dept_name;
+  private String rank_name;
   
   
   
+  
+  
+public String getDept_name() {
+	return dept_name;
+}
+public void setDept_name(String dept_name) {
+	this.dept_name = dept_name;
+}
+public String getRank_name() {
+	return rank_name;
+}
+public void setRank_name(String rank_name) {
+	this.rank_name = rank_name;
+}
 public String getE_m_id() {
 	return e_m_id;
 }

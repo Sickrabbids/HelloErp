@@ -10,4 +10,9 @@
 		SELECT * FROM EMP WHERE E_ID='heo'
 	</select>
 
+
+<insert id="insertemp"  parameterType="com.rb.etp.bean.EmpDto">
+		INSERT INTO EMP VALUES(${e_m_id},${e_code},{e_name},${e_idnum},${d_indate},${e_email},${e_phone},${e_bankname},${e_banknum},${e_address},${e_bigo},${e_basicpay},${e_state},${dept_name},${rank_name})
+	</insert>
+
 </mapper>
