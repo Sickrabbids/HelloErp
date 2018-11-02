@@ -32,8 +32,8 @@
     </div>
    
    	<!-- 부트스트랩 불러오기 -->
-    <script src="resources/Js/jquery-3.3.1.min.js"></script>
-    <script src="resources/Bootstrap/js/bootstrap.min.js"></script>
+ 	 <script src="resources/Js/jquery-3.3.1.min.js"></script>
+    <script src="resources/Bootstrap/js/bootstrap.min.js"></script> 
     <!-- ============ -->
    
    <script>
