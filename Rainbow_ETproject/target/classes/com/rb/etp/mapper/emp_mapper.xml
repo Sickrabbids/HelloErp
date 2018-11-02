@@ -12,7 +12,12 @@
 
 
 <insert id="insertemp"  parameterType="com.rb.etp.bean.EmpDto">
-		INSERT INTO EMP VALUES(${e_m_id},${e_code},{e_name},${e_idnum},${d_indate},${e_email},${e_phone},${e_bankname},${e_banknum},${e_address},${e_bigo},${e_basicpay},${e_state},${dept_name},${rank_name})
+		INSERT INTO EMP VALUES(${e_m_id},${e_code},{e_name},${e_idnum},SYSDATE,${e_email},${e_phone},${e_bankname},${e_banknum},${e_address},${e_bigo},${e_basicpay},${e_state},${dept_name},${rank_name})
 	</insert>
+
+<select id="empInfo" resultType="EmpDto" parameterType="String">
+		SELECT * FROM EMP WHERE E_ID='heo' AND E_NAME=#{e_code}
+	</select>
+
 
 </mapper>

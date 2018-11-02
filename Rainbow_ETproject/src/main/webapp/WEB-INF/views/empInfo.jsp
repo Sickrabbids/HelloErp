@@ -53,43 +53,41 @@
 									style="height: 150px; width: 140px">
 									</td>
 								<td colspan="2" align="left"><font size=4>사 원 번 호 :
-								</font> <input type="text" class="form-control" size="20" name='e_code'></td>
+								</font> <input type="text" class="form-control" size="20" name='e_code' value='${emp.e_code}'></td>
 								<td colspan="2" align="left"><font size=4>사 원 이 름 :
-								</font> <input type="text" class="form-control" size="20" name='e_name'></td>
+								</font> <input type="text" class="form-control" size="20" name='e_name' value='${emp.e_name }'></td>
 									
 							</tr>
 							<tr align="center">
 								<td colspan="2" align="left"><font size=4>주민등록번호:</font> <input
-									type="text" class="form-control" size="20" name='e_idnum'></td>
+									type="text" class="form-control" size="20" name='e_idnum' value='${emp.e_idnum}'></td>
 								<td colspan="2" align="left"><font size=4>입 사 일 :</font> <input
-									type="text" class="form-control" size="20" name='e_indate'></td>
+									type="text" class="form-control" size="20" name='e_indate'value='${emp.e_indate}'></td>
 
 
 							</tr>
 							<tr align="center">
 								<td colspan="2" align="left"><font size=4>부 서 :</font> <input
-									type="text" class="form-control" size="20" name='dept_name'></td>
+									type="text" class="form-control" size="20" name='dept_name'value='${emp.dept_name}'></td>
 								<td colspan="2" align="left"><font size=4>이 메 일 :</font> <input
-									type="text" class="form-control" size="20" name='e_email'></td>
+									type="text" class="form-control" size="20" name='e_email' value='${emp.e_email}'></td>
 
 							</tr>
 							<tr align="center">
 								<td colspan="2" align="left"><font size=4>직 급 :</font> <input
-									type="text" class="form-control" size="20" name='rank_name'></td>
+									type="text" class="form-control" size="20" name='rank_name' value='${emp.rank_name}'></td>
 								<td colspan="2" align="left"><font size=4>전 화 번 호 :</font>
 									<input type="text" class="form-control" size="20"
-									name='e_phone'></td>
+									name='e_phone' value='${emp.e_phone}'></td>
 							</tr>
 
 							<tr align="center">
 								<td colspan="1" align="left"><font size=4>상 태 :</font> <input
-									type="text" class="form-control" size="8" name='e_state' placeholder="재직1 퇴사 2"></td>
-
+									type="text" class="form-control" size="8" name='e_state' placeholder="재직1 퇴사 2" value='${emp.e_state}'></td>
 								<td colspan="1" align="left"><font size=4>은 행 명 :</font> <input
-									type="text" class="form-control" size="20" name='e_bankname'></td>
+									type="text" class="form-control" size="20" name='e_bankname' value='${emp.e_bankname}'></td>
 								<td colspan="3" align="left"><font size=4>계 좌 번 호 :</font>
-									<input type="text" class="form-control" size="20"
-									name='e_banknum'></td>
+									<input type="text" class="form-control" size="20"name='e_banknum' value='${emp.e_banknum}'></td>
 
 
 
@@ -97,12 +95,12 @@
 							<tr>
 								<td colspan="5" align="center"><font size=4>주&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소&nbsp;:</font>
 									<input type="text" class="form-control" size="95"
-									name='e_address'></td>
+									name='e_address' value='${emp.e_address}'></td>
 
 							</tr>
 							<tr>
 								<td colspan="5" align="center"><font size=4>비&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;고&nbsp;:</font>
-									<input type="text" class="form-control" size="95" name='e_bigo'></td>
+									<input type="text" class="form-control" size="95" name='e_bigo' value='${emp.e_bigo}'></td>
 
 							</tr>
 							<tr align="center">

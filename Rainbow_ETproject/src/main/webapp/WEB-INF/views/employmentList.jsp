@@ -39,6 +39,7 @@
 <style>
 #main {
 	padding-top: 5%;
+	margin-left: 5%;
 }
 
 #bor {
@@ -46,7 +47,7 @@
 }
 
 .table th {
-	
+	text-align: left;
 }
 
 .table td {
@@ -56,10 +57,11 @@
 #test {
 	vertical-align: middle;
 }
-/* #tt{
-vertical-align:middle;
-	text-align: center;
-} */
+
+#tt {
+	vertical-align: middle;
+	text-align: left;
+}
 </style>
 <body>
 
@@ -198,7 +200,7 @@ vertical-align:middle;
 		<div id="page-wrapper">
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-lg-12" id='main'>
+					<div class="col-lg-10" id='main'>
 
 
 
@@ -224,7 +226,7 @@ vertical-align:middle;
 							<table class="table" id='tt'>
 								<thead>
 									<tr>
-										<th>행추가</th>
+										<!-- 	<th>행추가</th> -->
 										<th>사번</th>
 										<th>이름</th>
 										<th>직급</th>
@@ -244,16 +246,16 @@ vertical-align:middle;
 
 									<c:forEach var="board" items="${test}">
 										<tr>
-		<td><button class='btn btn-primary btn-xs'onclick="add_row()"><span class='glyphicon glyphicon-arrow-up'></span></button><br /><button class='btn btn-primary btn-xs' onclick="add_drow()"><span class='glyphicon glyphicon-arrow-down'></span></button></td>
-											<td >${board.e_code}</td>
-											<td >${board.e_name}</td>
-											<td >${board.rank_name}</td>
-											<td >${board.dept_name}</td>
+											<!-- <td><button class='btn btn-primary btn-xs'onclick="add_row()"><span class='glyphicon glyphicon-arrow-up'></span></button><br /><button class='btn btn-primary btn-xs' onclick="add_drow()"><span class='glyphicon glyphicon-arrow-down'></span></button></td> -->
+											<td>${board.e_code}</td>
+											<td><a href='empInfo?e_code=${board.e_name}' onclick="popupOpen2()">${board.e_name}</a></td>
+											<td>${board.rank_name}</td>
+											<td>${board.dept_name}</td>
 										</tr>
 									</c:forEach>
 								</tbody>
 
-
+<%-- 'empInfo?e_code=${board.e_name}' --%>
 
 
 								</tbody>
@@ -287,9 +289,30 @@ vertical-align:middle;
 
 
 
+
+
 							<script type="text/javascript">
 								function popupOpen() {
+									window.name='employmentList'
+									var popUrl = "empinsertForm"; //팝업창에 출력될 페이지 URL
 
+									var popOption = "width=1200, height=900, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
+
+									openWin=window.open(popUrl, "", popOption);
+
+								}
+								function sendtest() {
+									openWin.document.get
+									
+								}
+							</script>
+
+
+
+
+							<script type="text/javascript">
+								function popupOpen2() {
+									
 									var popUrl = "empinsertForm"; //팝업창에 출력될 페이지 URL
 
 									var popOption = "width=1200, height=900, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
@@ -298,7 +321,6 @@ vertical-align:middle;
 
 								}
 							</script>
-
 
 
 
@@ -371,7 +393,34 @@ vertical-align:middle;
 			cell4.innerHTML = "테스트";
 			cell5.innerHTML = "테스트";
 		}
+		
+		
+		
+	function aj(){	
+		// 미리 팝업을 띄워놓고. 
+		var w = window.open("about:blank","_blank");
+
+
+		// ajax process
+		$.ajax({
+			url:"url주소",
+			method:"POST",
+			data:formData,
+			dataType:"html",
+			success: eventSuccess,
+			error: function(xhr, status, error) {alert(error);}
+		});
+	}
+		function eventSuccess(data)
+		{
+			//여기서 팝업된 창의 주소를 변경하자.
+			w.location.href = "팝업주소";
+		}
+		
 	</script>
+	
+	
+	
 </body>
 
 </html>

@@ -34,6 +34,15 @@ public class Emp {
 		return mav;
 	}
 
+
+	public ModelAndView empInfo(String test) {
+		mav=new ModelAndView();
+		EmpDto eDto=ie.empInfo(test);
+		mav.addObject("emp", eDto);
+		mav.setViewName("empInfo");
+		return mav;
+	}
+
 	
 	
 }

@@ -7,7 +7,7 @@ public class EmpDto {
   private String e_code;
   private String e_name;
   private String e_idnum;
-  private Date e_indate;
+  private String e_indate;
   private String e_email;
   private String e_phone;
   private String e_bankname;
@@ -59,10 +59,10 @@ public String getE_idnum() {
 public void setE_idnum(String e_idnum) {
 	this.e_idnum = e_idnum;
 }
-public Date getE_indate() {
+public String getE_indate() {
 	return e_indate;
 }
-public void setE_indate(Date e_indate) {
+public void setE_indate(String e_indate) {
 	this.e_indate = e_indate;
 }
 public String getE_email() {

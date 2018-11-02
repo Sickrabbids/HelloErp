@@ -6,9 +6,11 @@ import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.omg.CORBA.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +35,7 @@ public class HomeController {
 	Emp emp;
 	
 	
-	@RequestMapping(value = "/empList", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home() {
 		
 		mav=new ModelAndView();
@@ -47,7 +49,7 @@ public class HomeController {
 		
 		return mav;
 	}
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/employmentList", method = RequestMethod.GET)
 	public ModelAndView empList() {
 		mav=new ModelAndView();
 		mav=emp.empList();
@@ -62,16 +64,18 @@ public class HomeController {
 	}
 	@RequestMapping(value = "/empinsert")
 	public  ModelAndView empinsert(EmpDto eDto) {
-		System.out.println(eDto.getE_m_id());
-		System.out.println(eDto.getE_name());
 		mav=new ModelAndView();
 		mav=emp.empinsert(eDto);
-		
-		
-		
-		
-		
 		return mav;
 	}
+	@RequestMapping(value = "/empInfo")
+	public  ModelAndView empInfo (HttpServletRequest req) {
+		mav=new ModelAndView();
+		String test=req.getParameter("e_code");
+		System.out.println(test);
+		mav=emp.empInfo(test);
+		return mav;
+	}
+	
 	
 }

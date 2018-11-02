@@ -10,5 +10,7 @@ public interface Iemp {
 
 	public void insertemp(EmpDto eDto);
 
+	public EmpDto empInfo(String test);
+
 	
 }
