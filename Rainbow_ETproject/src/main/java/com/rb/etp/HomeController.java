@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.rb.etp.services.Emp;
 import com.rb.etp.services.test;
 
 
@@ -27,27 +26,10 @@ public class HomeController {
 	
 	@Autowired
 		test tt;
-	@Autowired	
-	Emp emp;
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home() {
-		
 		mav=new ModelAndView();
-		
-		int i=tt.test();
-		
-		System.out.println("테스트중입니다"+i);
-		mav.addObject("test", i);
 		mav.setViewName("home");
-	
-		
-		return mav;
-	}
-	@RequestMapping(value = "/empList", method = RequestMethod.GET)
-	public ModelAndView empList() {
-		mav=new ModelAndView();
-		emp.empList();
-		
 		return mav;
 	}
 	
