@@ -4,8 +4,7 @@
 
 <configuration>
 	<typeAliases>
-		<!-- <typeAlias  alias="member" type="com.board.cha.bean.Member"/>
-		<typeAlias  alias="board" type="com.board.cha.bean.Board"/>-->	
+		 <typeAlias  alias="EmpDto" type="com.rb.etp.bean.EmpDto"/>
  		<package name="com.rb.etp.bean"/>
  </typeAliases>
 </configuration>
