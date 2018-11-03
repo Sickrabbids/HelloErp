@@ -1,12 +1,15 @@
 package com.rb.etp.services;
 
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
-
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.rb.etp.Dao.Iemp;
 import com.rb.etp.bean.EmpDto;
 
@@ -42,6 +45,29 @@ public class Emp {
 		mav.setViewName("empInfo");
 		return mav;
 	}
+
+
+	public String empajsearch(HashMap<String, String> sMap) {
+		List<EmpDto> eList=null;
+		if(sMap.get("type").equals("name")) {
+			String name=sMap.get("data");
+			eList=ie.empajnamesearch(name);
+		}
+		if(sMap.get("type").equals("code")) {
+			String code=sMap.get("data");
+			eList=ie.empajcodesearch(code);
+			for(int i=0;i<eList.size();i++) {
+				System.out.println(eList.get(i).getE_name());
+				System.out.println(eList.get(i).getE_code());
+			}
+		}
+		Gson gson=new Gson();
+			String json=gson.toJson(eList);
+			return json ;
+	}
+
+
+
 
 	
 	

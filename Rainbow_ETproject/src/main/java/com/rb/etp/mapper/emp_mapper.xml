@@ -18,6 +18,12 @@
 <select id="empInfo" resultType="EmpDto" parameterType="String">
 		SELECT * FROM EMP WHERE E_ID='heo' AND E_NAME=#{e_code}
 	</select>
-
+	
+	<select id="empajnamesearch" resultType="EmpDto" parameterType="String">
+		SELECT * FROM EMP WHERE E_ID='heo' AND E_NAME=#{code} 
+	</select>
+<select id="empajcodesearch" resultType="EmpDto" parameterType="String">
+		SELECT * FROM EMP WHERE E_ID='heo' AND E_CODE LIKE '%'||#{code}||'%' 
+	</select>
 
 </mapper>

@@ -37,8 +37,12 @@
 
 </head>
 <style>
+#bor{
+margin-top:3%;
+margin-right: 9%;
+margin-bottom: -10px;
+}
 #main {
-	padding-top: 5%;
 	margin-left: 5%;
 }
 
@@ -200,22 +204,56 @@
 		<div id="page-wrapper">
 			<div class="container-fluid">
 				<div class="row">
+							<div class="form-group row pull-right" id='bor'>
+								<div class='col-xs-4'>
+								<select class="form-control" id='selectBox'>
+									<option value='name'>이름</option>
+									<option value='code'>사번</option>
+								</select> 
+								</div>
+								<div class='col-xs-5'>
+								<input type="text" class="form-control" id='search' onkeyup="searchData();">
+								</div>
+								 <input type="button" class="btn btn-primary " onclick="searchData();" value='검색'>
+							
+								</div>
 					<div class="col-lg-10" id='main'>
 
 
 
 
+<!-- +"&type="+encodeURIComponent(document.getElementById('select').options[document.getElementById('select').selectedIndex].value]) -->
+	<script>
+	function searchData2(){
+	var target=document.getElementById("selectBox");
+	  alert('선택된 옵션 text 값=' + target.options[target.selectedIndex].text); 
+	  alert('선택된 옵션 value 값=' + target.options[target.selectedIndex].value);  
 
-						<form class="form-inline" role="form">
-							<div class="form-group" id='bor'>
-								<select class="form-control">
-									<option>이름</option>
-									<option>사번</option>
-								</select> <input type="text" class="form-control"> <input
-									type='submit' class="btn btn-primary " value='검색'>
-							</div>
-						</form>
+	}
+	
+	
+	
+	
+	var request = new XMLHttpRequest();
+	function searchData() {
+		var target=document.getElementById("selectBox");
+		var sb=target.options[target.selectedIndex].value
+		request.open("post","./ajsearchData?data="+encodeURIComponent(document.getElementById('search').value)+'&type='+encodeURIComponent(sb),true);
+		request.onreadystatechange = searchProcess; 
+		request.send(null);
+	}
+	function searchProcess(){
+		var table=document.getElementById('test');
+		table.innerHTML='';
+		if(request.readyState == 4 && request.status == 200){
+			var obj= eval('('+ request.responseText + ')');
+			var result = object.json;
+			
+		}
+	}	
+	</script>
 
+							
 
 						<div class="panel panel-default">
 							<div class="panel-heading">
