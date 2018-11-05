@@ -333,8 +333,7 @@
 										<tr>
 											<!-- <td><button class='btn btn-primary btn-xs'onclick="add_row()"><span class='glyphicon glyphicon-arrow-up'></span></button><br /><button class='btn btn-primary btn-xs' onclick="add_drow()"><span class='glyphicon glyphicon-arrow-down'></span></button></td> -->
 											<td>${board.e_code}</td>
-											<td><a href='#' id='infotag'
-												>${board.e_name}</a></td>
+											<td><a href='#' onclick="empAjInfo(${board.e_name})">${board.e_name}</a></td>
 											<td>${board.rank_name}</td>
 											<td>${board.dept_name}</td>
 										</tr>
@@ -404,6 +403,9 @@
 	<!-- Custom Theme JavaScript -->
 	<script src="resources/test/dist/js/sb-admin-2.js"></script>
 	<script>
+	function empAjInfo(name){
+		console.log(name);
+	}
 	function add_row() {
 			var tr = $(this);
 			console.log(tr);
