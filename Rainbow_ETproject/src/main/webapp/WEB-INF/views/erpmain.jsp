@@ -10,21 +10,23 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>SB Admin 2 - Bootstrap Admin Theme</title>
+<title>ErpMain</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="resources/vendor/bootstrap/css/bootstrap.min.css"
+<link href="resources/Bootstrap/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <!-- MetisMenu CSS -->
-<link href="resources/vendor/metisMenu/metisMenu.min.css"
+<link href="resources/Bootstrap/vendor/metisMenu/metisMenu.min.css"
 	rel="stylesheet">
 
 <!-- Custom CSS -->
-<link href="resources/dist/css/sb-admin-2.css" rel="stylesheet">
+<link href="resources/Bootstrap/dist/css/sb-admin-2.css"
+	rel="stylesheet">
 
 <!-- Custom Fonts -->
-<link href="resources/vendor/font-awesome/css/font-awesome.min.css"
+<link
+	href="resources/Bootstrap/vendor/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -45,13 +47,19 @@
 }
 
 .table th {
+	
 }
 
 .table td {
-vertical-align:middle;
+	vertical-align: middle;
 }
-#test{
-    vertical-align: middle;  
+
+#test {
+	vertical-align: middle;
+}
+
+.hi {
+	display: none;
 }
 /* #tt{
 vertical-align:middle;
@@ -185,7 +193,7 @@ vertical-align:middle;
 								<li><a href="login.html">Login Page</a></li>
 							</ul> /.nav-second-level</li> -->
 							</ul>
-							</ul>
+					</ul>
 				</div>
 				<!-- /.sidebar-collapse -->
 			</div>
@@ -201,15 +209,14 @@ vertical-align:middle;
 
 
 
-						<form class="form-inline" role="form">
-							<div class="form-group" id='bor'>
-								<select class="form-control">
-									<option>이름</option>
-									<option>사번</option>
-								</select> <input type="text" class="form-control"> <input
-									type='submit' class="btn btn-primary " value='검색'>
-							</div>
-						</form>
+
+						<div class="form-group" id='bor'>
+							<select class="form-control">
+								<option>이름</option>
+								<option>사번</option>
+							</select> <input type="text" class="form-control"> <input
+								type='submit' class="btn btn-primary " value='검색'>
+						</div>
 
 
 						<div class="panel panel-default">
@@ -218,60 +225,44 @@ vertical-align:middle;
 									<span class="glyphicon glyphicon-tags"></span> &nbsp;&nbsp;직원명단
 								</h3>
 							</div>
-							<table class="table" id='tt'>
-								<thead>
-									<tr>
-										<th>행추가</th>
-										<th>사번</th>
-										<th>이름</th>
-										<th>직급</th>
-										<th>부서</th>
-										<th>부서번호</th>
-									</tr>
-								</thead>
-								<tbody id='test'>
-									<tr>
-										<td>
-										<div style="display: inline-block"><input type="checkbox"></div>
-											<div style="display: inline-block"><button class='btn btn-primary btn-xs' onclick="add_row()"><span class='glyphicon glyphicon-arrow-up'></span></button><br /><button class='btn btn-primary btn-xs' onclick="add_drow()"><span class='glyphicon glyphicon-arrow-down'></span></button></div>
-										</td>
-										<td style="vertical-align:middle">사번</td>
-										<td><a href="#">훈짱</a></td>
-										<td>말단</td>
-										<td>1989-10-02</td>
-										<td>0A-15-23</td>
-									</tr>
-									<tr>
-										<td><button class='btn btn-primary btn-xs' onclick="add_row()"><span class='glyphicon glyphicon-arrow-up'></span></button><br /><button class='btn btn-primary btn-xs' onclick="add_drow()"><span class='glyphicon glyphicon-arrow-down'></span></button>
-										</td>
-										<td>사번</td>
-										<td><a href="#">원장선생님</a></td>
-										<td>대장</td>
-										<td>1949-10-02</td>
-										<td>0A-15-01</td>
-									</tr>
-									<tr>
-										<td>
-<button class='btn btn-primary btn-xs' onclick="add_row()"><span class='glyphicon glyphicon-arrow-up'></span></button><br /><button class='btn btn-primary btn-xs' onclick="add_drow()"><span class='glyphicon glyphicon-arrow-down'></span></button>
-										</td>
-										<td>사번</td>
-										<td><a href="#">맹 the 빅 아</a></td>
-										<td>10위</td>
-										<td>1979-10-02</td>
-										<td>0A-15-81</td>
-									</tr>
-									<tr>
-										<td>
-<button class='btn btn-primary btn-xs' onclick="add_row()"><span class='glyphicon glyphicon-arrow-up'></span></button><br /><button class='btn btn-primary btn-xs' onclick="add_drow()"><span class='glyphicon glyphicon-arrow-down'></span></button>
-										</td>
-										<td>사번</td>
-										<td><a href="#">짱구</a></td>
-										<td>사장</td>
-										<td>2009-10-02</td>
-										<td>0A-15-09</td>
-									</tr>
-								</tbody>
-							</table>
+							<form action="test1" method="post" onsubmit="return abc()">
+								<table class="table" id='tta'>
+									<thead>
+										<tr>
+											<th>선택</th>
+											<th>행추가</th>
+											<th>사번</th>
+											<th>이름</th>
+											<th>직급</th>
+											<th>부서</th>
+											<th>부서번호</th>
+										</tr>
+									</thead>
+									<tbody id='test'>
+
+										<tr>
+											<td class="a"><input type="checkbox" class='a'>
+
+											</td>
+											<td>
+												<button type='button' class='btn btn-primary btn-xs'
+													onclick="add()">
+													<span class='glyphicon glyphicon-plus'></span>
+												</button>
+											</td>
+
+											<td><input type='text' name='a' value='0A-15-23'
+												class='t'>0000</td>
+											<td><input type="text" class='hi' value='훈짱'><a
+												href="#">훈짱</a>111</td>
+											<td><input type='text' name='b' value='' class='t'>222</td>
+											<td><input type='text' name='c' value='' class='t'>333</td>
+											<td><input type='text' name='d' value='' class='t'>444</td>
+										</tr>
+
+									</tbody>
+								</table>
+							</form>
 							<div class="col-md-4"></div>
 							<div class="col-md-5" style="margin: 20px">
 								<nav>
@@ -291,36 +282,137 @@ vertical-align:middle;
 								</nav>
 
 							</div>
+							<!-- 	<div class="col-md-1">
+								<a href="javascript:popupOpen();" class="btn btn-primary"
+									style="margin: 40px">등록</a>
+							</div>
+							-->
 							<div class="col-md-1">
-								<a href="javascript:popupOpen();" class="btn btn-primary" style="margin: 40px">등록</a>
+								설마여기?ㅋㅋㅋ <a href="#" class="btn btn-primary"
+									style="margin: 40px" onclick='abc()'>등록</a>
 							</div>
 
-						
-						
-						
-						
-						
-						<script type="text/javascript">
-							function popupOpen() {
 
-								var popUrl = "empinsert"; //팝업창에 출력될 페이지 URL
+							<script type="text/javascript">
+								function popupOpen() {
+									var popUrl = "empinsert"; //팝업창에 출력될 페이지 URL
+									var popOption = "width=1200, height=900, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
+									window.open(popUrl, "", popOption);
+								}
+								function abc1() {
+									/* 체크박스 a input 박스 t */
+									console.log("시작");
+									var a = document
+											.getElementsByClassName('a');
 
-								var popOption = "width=1200, height=900, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
+									/* $("#test").text(text); */
+									$('.a')
+											.each(
+													function(index) {
+														var tt = $(this).is(
+																":checked"); /* 체크녀석 확인후 담기 */
 
-								window.open(popUrl, "", popOption);
+														if (tt) {
+															var trNum = $(this)
+																	.closest(
+																			'tr')
+																	.prevAll().length;
+															console
+																	.log('trNum : '
+																			+ trNum);
+															var text = $(
+																	"#tta tr td input")
+																	.eq(0)
+																	.val();
+															console.dir(text);
+															var td = $(this)
+																	.closest(
+																			'tr')
+																	.prevAll().cells[1];
+															console
+																	.log('도막사라무=='
+																			+ td
+																					.val());
+														}
+													});
+								}
 
-							}
-						</script>
+								function abc() {
+									var rowData = new Array();
 
+									var gson = new Array();
+									var checkbox = $("input[class=a]:checked");
 
+									checkbox.each(function(i) {
+										var tr = checkbox.parent().parent().eq(
+												i);
+										var td = tr.children();
+										var tdArr = new Object();
 
+										var a = td.eq(2).find(
+												'input[type="text"]').val();
+										var b = td.eq(3).find(
+												'input[type="text"]').val();
+										var c = td.eq(4).find(
+												'input[type="text"]').val();
+										var d = td.eq(5).find(
+												'input[type="text"]').val();
+										var e = td.eq(6).find(
+												'input[type="text"]').val();
+										tdArr.a = a;
+										tdArr.b = b;
+										tdArr.c = c;
+										tdArr.d = d;
+										tdArr.e = e;
 
+/* 										console.log(tdArr); */
 
-
-
-
-</div>
-
+										rowData.push(tdArr);
+								/* 		console.log(rowData); */
+										
+									});
+									
+										
+										var test= JSON.stringify(rowData);
+								/* 		console.log(test);								
+										alert(typeof(test));
+										 */
+										$.ajax({
+											type:"POST",
+											url :"test",
+											data: {test:test},
+											dataType:"html",
+											success: function (gogo){
+												console.log("?????");
+												 console.log(gogo)
+												 
+												alert(gogo);	
+											},
+											error: function(error){
+												console.log("/////");
+												console.log(error)
+												alert(error)
+											}
+										});
+										
+										
+										}
+								
+								/* 	$(document).ready(function() {
+								    	$("#btn").on("click", function() {
+								       		var text = $("#tbl tr td input").eq(1).val();
+								        	$("#test").text(text);
+								        });
+								    });
+								
+								
+								$('.clickBtn').bind('click', function() { 
+									var trNum = $(this).closest('tr').prevAll().length; 
+									console.log('trNum : ' + trNum); 
+									});
+								 */
+								 
+							</script>
 
 
 
@@ -330,65 +422,60 @@ vertical-align:middle;
 
 
 						</div>
-						<!-- /.col-lg-12 -->
+
+
+
+
+
+
+
+
+
 					</div>
-					<!-- /.row -->
+					<!-- /.col-lg-12 -->
 				</div>
-				<!-- /.container-fluid -->
+				<!-- /.row -->
 			</div>
-			<!-- /#page-wrapper -->
-
+			<!-- /.container-fluid -->
 		</div>
-		<!-- /#wrapper -->
+		<!-- /#page-wrapper -->
 
-		<!-- jQuery -->
-		<script src="resources/vendor/jquery/jquery.min.js"></script>
+	</div>
+	<!-- /#wrapper -->
 
-		<!-- Bootstrap Core JavaScript -->
-		<script src="resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!-- jQuery -->
+	<script src="resources/Bootstrap/vendor/jquery/jquery.min.js"></script>
 
-		<!-- Metis Menu Plugin JavaScript -->
-		<script src="resources/vendor/metisMenu/metisMenu.min.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="resources/Bootstrap/vendor/bootstrap/js/bootstrap.min.js"></script>
 
-		<!-- Custom Theme JavaScript -->
-		<script src="resources/dist/js/sb-admin-2.js"></script>
-		<script>
-			function add_row() {
-				var tr = $(this);
-				console.log(tr);
-				var my_tbody = document.getElementById('test');
-				var row = my_tbody.insertRow(0);
-				var cell1 = row.insertCell(0);
-				var cell2 = row.insertCell(1);
-				var cell3 = row.insertCell(2);
-				var cell4 = row.insertCell(3);
-				var cell5 = row.insertCell(4);
-				var cell6 = row.insertCell(5);
-				cell1.innerHTML = "<td><button class='btn btn-primary btn-xs' onclick='add_row()'><span class='glyphicon glyphicon-arrow-up'></span></button><br/><button class='btn btn-primary btn-xs' onclick='add_drow()'><span class='glyphicon glyphicon-arrow-down'></span></button>	</td>";
-				cell2.innerHTML = "사번";
-				cell3.innerHTML = "<a href='#'>된당</a>";
-				cell4.innerHTML = "테스트";
-				cell5.innerHTML = "테스트";
-				cell6.innerHTML = "테스트";
-			}
-			function add_drow() {
-				var my_tbody = document.getElementById('test');
+	<!-- Metis Menu Plugin JavaScript -->
+	<script src="resources/Bootstrap/vendor/metisMenu/metisMenu.min.js"></script>
 
-				var row = my_tbody.insertRow(my_tbody.rows.length); // 하단에 추가 */
-				var cell1 = row.insertCell(0);
-				var cell2 = row.insertCell(1);
-				var cell3 = row.insertCell(2);
-				var cell4 = row.insertCell(3);
-				var cell5 = row.insertCell(4);
-				var cell6 = row.insertCell(5);
-				cell1.innerHTML = "<td><button class='btn btn-primary btn-xs' onclick='add_row()'><span class='glyphicon glyphicon-arrow-up'></span></button><br/><button class='btn btn-primary btn-xs' onclick='add_drow()'><span class='glyphicon glyphicon-arrow-down'></span></button>	</td>";
-				cell2.innerHTML = "사번";
-				cell3.innerHTML = "<a href='#'>된당</a>";
-				cell4.innerHTML = "테스트";
-				cell5.innerHTML = "테스트";
-				cell6.innerHTML = "테스트";
-			}
-		</script>
+	<!-- Custom Theme JavaScript -->
+	<script src="resources/Bootstrap/dist/js/sb-admin-2.js"></script>
+	<script>
+		function add() {
+			var tr = $(this);
+			console.log(tr);
+			var my_tbody = document.getElementById('test');
+			var row = my_tbody.insertRow(0);
+			var cell0 = row.insertCell(0);
+			var cell1 = row.insertCell(1);
+			var cell2 = row.insertCell(2);
+			var cell3 = row.insertCell(3);
+			var cell4 = row.insertCell(4);
+			var cell5 = row.insertCell(5);
+			var cell6 = row.insertCell(6);
+			cell0.innerHTML = "<input type='checkbox'class='a' >";
+			cell1.innerHTML = "<button type='button'  class='btn btn-primary btn-xs' onclick='add()'><span class='glyphicon glyphicon-plus'></span></button>";
+			cell2.innerHTML = "<input type='text' name='a' value='' class='t'>";
+			cell3.innerHTML = "<input type='text' name='b' value='' class='t'>";
+			cell4.innerHTML = "<input type='text' name='c' value='' class='t'>";
+			cell5.innerHTML = "<input type='text' name='d' value='' class='t'>";
+			cell6.innerHTML = "<input type='text' name='e' value='' class='t'>";
+		}
+	</script>
 </body>
 
 </html>
