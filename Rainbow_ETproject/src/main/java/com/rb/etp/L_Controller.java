@@ -28,7 +28,7 @@ public class L_Controller {
 	ModelAndView mav;
 	
 	//처음페이지
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView index() {
 		
 		mav = new ModelAndView();
@@ -60,7 +60,7 @@ public class L_Controller {
 	public ModelAndView erpMain() {
 		
 		mav = new ModelAndView();
-		mav.setViewName("erpMain");		
+		mav.setViewName("erpmain");		
 		return mav;
 	}
 	
