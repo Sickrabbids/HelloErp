@@ -52,7 +52,7 @@ public class HomeController {
 	public @ResponseBody String gson(String test) {
 		System.out.println("오긴오니?"+test);
 		HashMap<String, String> ac= new HashMap<String, String>();
-	
+		System.out.println("시밥 들어보면 형상관리가 젤중요한데 ㅅㅂ 알려주지를 않아 ㅋㅋㅋ ");
 		String a=tt.jsontest(test);
 		ac.put("test", a);
 		return a;
