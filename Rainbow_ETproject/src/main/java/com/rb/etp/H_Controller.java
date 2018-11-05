@@ -43,25 +43,26 @@ public class H_Controller {
 	@RequestMapping(value = "/empinsert")
 	public  ModelAndView empinsert(EmpDto eDto) {
 		mav=new ModelAndView();
+		eDto.setE_id("heo");
+		System.out.println(eDto.getDept_name());
 		mav=emp.empinsert(eDto);
 		return mav;
 	}
-	@RequestMapping(value = "/empInfo")
+/*	@RequestMapping(value = "/empInfo")
 	public  ModelAndView empInfo (HttpServletRequest req) {
 		mav=new ModelAndView();
 		String test=req.getParameter("e_code");
 		mav=emp.empInfo(test);
 		return mav;
 	}
-	
+	*/
 	
 	@RequestMapping(value = "/ajempInfo")
-	public  ModelAndView ajempInfo (HttpServletRequest req) {
+	public  @ResponseBody String ajempInfo (HttpServletRequest req) {
 		mav=new ModelAndView();
 		String test=req.getParameter("e_name");
-		System.out.println(test);
-	/*	mav=emp.empInfo(test);*/
-		return mav;
+		String json=emp.empInfo(test);
+		return test;
 	}
 	@RequestMapping(value = "/ajempsearchData", produces = "application/json; charset=utf8")
 	public  @ResponseBody String ajsearchData (HttpServletRequest req) {

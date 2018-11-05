@@ -2,12 +2,15 @@ package com.rb.etp;
 
 
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,15 +42,15 @@ public class L_Controller {
 	//ajax를 이용한 로그인 페이지
 	@ResponseBody
 	@RequestMapping(value = "/logIn", method = RequestMethod.POST)
-	public int logIn(L_MemberBean mb, HttpServletRequest request) {
+	public int logIn(@RequestBody HashMap<String, Object> hm, HttpServletRequest request) {//L_MemberBean mb
 		
-		int mbreturn = ms.logIn(mb, request);
+		int mbreturn = ms.logIn(hm, request);
 		return mbreturn;
 	
 	}
 	
 	//어드민계정 페이지
-	@RequestMapping(value = "/adminMain", method = RequestMethod.GET)
+	@RequestMapping(value = "/adminMain", method = RequestMethod.POST)
 	public ModelAndView adminMain() {
 		
 		mav = new ModelAndView();
@@ -56,11 +59,11 @@ public class L_Controller {
 	}
 	
 	//erp계정 페이지
-	@RequestMapping(value = "/erpMain", method = RequestMethod.GET)
+	@RequestMapping(value = "/erpmain", method = RequestMethod.GET)
 	public ModelAndView erpMain() {
 		
 		mav = new ModelAndView();
-		mav.setViewName("erpMain");		
+		mav.setViewName("erpmain");		
 		return mav;
 	}
 	
@@ -103,5 +106,14 @@ public class L_Controller {
 			
 		}
 		
+		@ResponseBody
+		@RequestMapping(value = "/memberInfo", method = RequestMethod.GET)
+		public ModelAndView memberInfo() {
+			
+			
+			mav = ms.memberInfo(); 
+			return mav;
+			
+		}
 	
 }

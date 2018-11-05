@@ -34,12 +34,27 @@ public class Emp {
 		return mav;
 	}
 
-	public ModelAndView empInfo(String test) {
+	public String empInfo(String test) {
 		mav = new ModelAndView();
 		EmpDto eDto = ie.empInfo(test);
-		mav.addObject("emp", eDto);
-		mav.setViewName("empInfo");
-		return mav;
+		StringBuilder sb = new StringBuilder();
+		sb.append("{\"result\":[");
+			sb.append("[{\"value\":\"" + eDto.getE_code() + "\"},");
+			sb.append("[{\"value\":\"" + eDto.getE_name() + "\"},");
+			sb.append("[{\"value\":\"" + eDto.getE_idnum() + "\"},");
+			sb.append("[{\"value\":\"" + eDto.getE_indate() + "\"},");
+			sb.append("[{\"value\":\"" + eDto.getE_email() + "\"},");
+			sb.append("[{\"value\":\"" + eDto.getE_phone() + "\"},");
+			sb.append("[{\"value\":\"" + eDto.getE_bankname() + "\"},");
+			sb.append("[{\"value\":\"" + eDto.getE_banknum() + "\"},");
+			sb.append("[{\"value\":\"" + eDto.getE_address() + "\"},");
+			sb.append("[{\"value\":\"" + eDto.getE_bigo() + "\"},");
+			sb.append("[{\"value\":\"" + eDto.getE_basicpay() + "\"},");
+			sb.append("[{\"value\":\"" + eDto.getE_state() + "\"},");
+			sb.append("[{\"value\":\"" + eDto.getDept_name() + "\"},");
+			sb.append("[{\"value\":\"" + eDto.getRank_name()+ "\"},");
+		sb.append("]}");
+		return sb.toString();
 	}
 
 	public String empajsearch(HashMap<String, String> sMap) {

@@ -333,7 +333,7 @@
 										<tr>
 											<!-- <td><button class='btn btn-primary btn-xs'onclick="add_row()"><span class='glyphicon glyphicon-arrow-up'></span></button><br /><button class='btn btn-primary btn-xs' onclick="add_drow()"><span class='glyphicon glyphicon-arrow-down'></span></button></td> -->
 											<td>${board.e_code}</td>
-											<td><a href='#' onclick="empAjInfo(${board.e_name})">${board.e_name}</a></td>
+											<td><a href='#' onclick="empAjInfo('${board.e_name}')">${board.e_name}</a></td>
 											<td>${board.rank_name}</td>
 											<td>${board.dept_name}</td>
 										</tr>
@@ -405,6 +405,21 @@
 	<script>
 	function empAjInfo(name){
 		console.log(name);
+		var e_name=name;
+		console.log(e_name);
+		$.ajax({
+			type:'POST',
+			url:'ajempInfo?e_name='+e_name,
+			dataType:'json',
+			success:function(data){
+						
+			},
+			error:function(error){
+				console.log(error);
+			}
+		});
+		
+		
 	}
 	function add_row() {
 			var tr = $(this);

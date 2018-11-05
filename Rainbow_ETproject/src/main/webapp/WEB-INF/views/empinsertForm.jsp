@@ -37,7 +37,7 @@
 					<div class="panel-body">
 						<div class="media"></div>
 					</div>
-					<form class="form-inline" role="form" action="empinsert" method="post">
+					<form class="form-inline" role="form" action="empinsert" method="post" onsubmit="return formcheck();">
 						<table class="table">
 							<tr>
 								<td colspan="5">
@@ -53,57 +53,47 @@
 									style="height: 150px; width: 140px">
 									</td>
 								<td colspan="2" align="left"><font size=4>사 원 번 호 :
-								</font> <input type="text" class="form-control" size="20" name='e_code'></td>
+								</font> <input type="text" class="form-control" size="20" name='e_code' placeholder="필수입력사항입나디." id='code'></td>
 								<td colspan="2" align="left"><font size=4>사 원 이 름 :
-								</font> <input type="text" class="form-control" size="20" name='e_name'></td>
-									
+								</font> <input type="text" class="form-control" size="20" name='e_name'placeholder="필수입력사항입나디." id='name'></td>
 							</tr>
-							<tr align="center">
-								<td colspan="2" align="left"><font size=4>주민등록번호:</font> <input
-									type="text" class="form-control" size="20" name='e_idnum'></td>
-								<td colspan="2" align="left"><font size=4>입 사 일 :</font> <input
-									type="text" class="form-control" size="20" name='e_indate'></td>
-
-
+							<tr>
+							<td colspan="2" align="left"><font size=4>주 민 번 호 :
+								</font> <input type="text" class="form-control" size="20" name='e_idnum' placeholder="필수입력사항입나디." id='pnum'></td>
+								<td colspan="3" align="left"><font size=4>입 사 일 :
+								</font> <input type="text" class="form-control" size="20" name='e_indate'placeholder="필수입력사항입나디."></td>
 							</tr>
-							<tr align="center">
-								<td colspan="2" align="left"><font size=4>부 서 :</font> <input
-									type="text" class="form-control" size="20" name='dept_name'></td>
-								<td colspan="2" align="left"><font size=4>이 메 일 :</font> <input
-									type="text" class="form-control" size="20" name='e_email'></td>
-
+							<tr>
+							<td colspan="2" align="left"><font size=4>이 메 일 :
+								</font> <input type="text" class="form-control" size="20" name='e_email'></td>
+								<td colspan="3" align="left"><font size=4>전 화 번 호 :
+								</font> <input type="text" class="form-control" size="20" name='e_phone' placeholder="필수입력사항입나디."></td>
 							</tr>
-							<tr align="center">
-								<td colspan="2" align="left"><font size=4>직 급 :</font> <input
-									type="text" class="form-control" size="20" name='rank_name'></td>
-								<td colspan="2" align="left"><font size=4>전 화 번 호 :</font>
-									<input type="text" class="form-control" size="20"
-									name='e_phone'></td>
+							<tr>
+							<td colspan="2" align="left"><font size=4>은 행 명 :
+								</font> <input type="text" class="form-control" size="20" name='e_bankname'></td>
+								<td colspan="3" align="left"><font size=4>계 좌 번 호 :
+								</font> <input type="text" class="form-control" size="20" name='e_banknum'></td>
 							</tr>
-
-							<tr align="center">
-								<td colspan="1" align="left"><font size=4>상 태 :</font> <input
+							<tr>
+							<td colspan="5" align="center"><font size=4>주 소:
+								</font> <input type="text" class="form-control" size="95" name='e_address' placeholder="필수입력사항입나디."></td>
+							</tr>
+							<tr>
+							<td colspan="5" align="center"><font size=4>비 고:
+								</font> <input type="text" class="form-control" size="95" name='e_bigo'></td>
+							</tr>
+							<tr>
+							<td colspan="2" align="right"><font size=4>기 본 급 :</font><input
+									type="text" class="form-control" size="20" name='e_basicpay'></td>
+							<td colspan="3" align="center"><font size=4>재 직 상 태 :</font><input
 									type="text" class="form-control" size="8" name='e_state' placeholder="재직1 퇴사 2"></td>
-
-								<td colspan="1" align="left"><font size=4>은 행 명 :</font> <input
-									type="text" class="form-control" size="20" name='e_bankname'></td>
-								<td colspan="3" align="left"><font size=4>계 좌 번 호 :</font>
-									<input type="text" class="form-control" size="20"
-									name='e_banknum'></td>
-
-
-
 							</tr>
 							<tr>
-								<td colspan="5" align="center"><font size=4>주&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소&nbsp;:</font>
-									<input type="text" class="form-control" size="95"
-									name='e_address'></td>
-
-							</tr>
-							<tr>
-								<td colspan="5" align="center"><font size=4>비&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;고&nbsp;:</font>
-									<input type="text" class="form-control" size="95" name='e_bigo'></td>
-
+							<td colspan="2" align="right"><font size=4>직 급 :
+								</font> <input type="text" class="form-control" size="20" name='rank_name'></td>
+								<td colspan="3" align="center"><font size=4>부 서 명 :
+								</font> <input type="text" class="form-control" size="20" name='dept_name'></td>
 							</tr>
 							<tr align="center">
 								<td colspan="4"><input type="submit"
@@ -115,10 +105,34 @@
 			</div>
 		</div>
 	</div>
-
-
 </body>
+<script>
 
+	function formcheck(){
+		var code= document.getElementById('code').value;
+		var name= document.getElementById('name').value;
+		var pnum= document.getElementById('pnum').value;
+		if(code =='' || code ==null){
+			alert("코드는 반드시 입력해주세요")
+			document.getElementById('code').focus();
+			return false;
+		}else if (name == "" || name == null) {
+			alert("이름은 반드시 입력해주세요");
+			document.getElementById('name').focus();
+			return false;
+		
+		}else if (pnum == "" || pnum == null) {
+			alert("이름은 반드시 입력해주세요");
+			document.getElementById('pnum').focus();
+			return false;
+		
+		}
+		alert('성공');
+		return
+		}
+		
+
+</script>
 </html>
 
 

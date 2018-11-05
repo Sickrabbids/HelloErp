@@ -1,8 +1,9 @@
 package com.rb.etp.bean;
 
-import java.util.Date;
 
 public class EmpDto {
+  
+  private String e_id;
   private String e_m_id;
   private String e_code;
   private String e_name;
@@ -23,6 +24,12 @@ public class EmpDto {
   
   
   
+public String getE_id() {
+	return e_id;
+}
+public void setE_id(String e_id) {
+	this.e_id = e_id;
+}
 public String getDept_name() {
 	return dept_name;
 }
@@ -65,14 +72,14 @@ public String getE_indate() {
 public void setE_indate(String e_indate) {
 	this.e_indate = e_indate;
 }
+public String getE_phone() {
+	return e_phone;
+}
 public String getE_email() {
 	return e_email;
 }
 public void setE_email(String e_email) {
 	this.e_email = e_email;
-}
-public String getE_phone() {
-	return e_phone;
 }
 public void setE_phone(String e_phone) {
 	this.e_phone = e_phone;
