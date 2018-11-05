@@ -39,5 +39,7 @@
 <select id="empajcodesearch" resultType="EmpDto" parameterType="String">
 		SELECT * FROM EMP WHERE E_ID='heo' AND E_CODE LIKE '%'||#{code}||'%' 
 	</select>
-
+<select id="ajmulticheck" resultType="Integer" parameterType="String">
+		SELECT COUNT(*) FROM EMP WHERE E_CODE=#{e_code}
+	</select>
 </mapper>

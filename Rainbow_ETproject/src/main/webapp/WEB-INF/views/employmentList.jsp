@@ -241,9 +241,8 @@
 							function searchData() {
 								var target = document
 										.getElementById("selectBox");
-								var sb = target.options[target.selectedIndex].value
-								request
-										.open(
+								var sb = target.options[target.selectedIndex].value;
+								request.open(
 												"post",
 												"./ajempsearchData?data="
 														+ encodeURIComponent(document

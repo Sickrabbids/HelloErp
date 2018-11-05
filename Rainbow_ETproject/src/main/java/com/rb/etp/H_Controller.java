@@ -75,4 +75,14 @@ public class H_Controller {
 		String json=emp.empajsearch(sMap);
 		return json;
 	}
+	
+	@RequestMapping(value = "/ajmulticheck", produces = "application/json; charset=utf8")
+	public  @ResponseBody String ajmulticheck (HttpServletRequest req) {
+		mav=new ModelAndView();
+		String e_code=req.getParameter("code");
+		String result=emp.ajmulticheck(e_code);
+		System.out.println(result);
+		return result;
+	}
+	
 }

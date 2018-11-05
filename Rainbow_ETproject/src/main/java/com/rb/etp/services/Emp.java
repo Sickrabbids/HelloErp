@@ -82,4 +82,20 @@ public class Emp {
 		return sb.toString();
 
 	}
+
+	public String ajmulticheck(String e_code) {
+		int result=ie.ajmulticheck(e_code);
+		String check=null;
+		if(result!=0) {
+			check="중복";
+			return check;
+		}
+		else if(result==0) {
+			check="중복아님";
+			return check;
+		}
+		
+		
+		return null;
+	}
 }

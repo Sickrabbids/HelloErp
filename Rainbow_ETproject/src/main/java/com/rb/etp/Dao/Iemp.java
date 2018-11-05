@@ -19,6 +19,8 @@ public interface Iemp {
 
 	public List<EmpDto> empajcodesearch(String code);
 
+	public int ajmulticheck(String e_code);
+
 
 
 
