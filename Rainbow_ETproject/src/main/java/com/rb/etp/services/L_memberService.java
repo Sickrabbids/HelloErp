@@ -49,7 +49,7 @@ public class L_memberService {
 		if(hm.get("M_ID")==null) { //|| mb.getM_pwd()==null
 			result = 0;
 			return result;
-		}else if(hm.get("M_ID").equals("ker")){
+		}else if(hm.get("M_ID").equals("admin")){
 			result = 1;
 			return result;
 		}else{
