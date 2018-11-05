@@ -11,11 +11,19 @@ public class L_MemberBean {
 	String m_caddress;
 	String m_cphone;
 	String m_cboss;
-	String m_cmanager;
+	String m_cmname;
 	String m_cmemal;
 	String m_cmphone;
 	
 	
+	public String getM_cmname() {
+		return m_cmname;
+	}
+
+	public void setM_cmname(String m_cmname) {
+		this.m_cmname = m_cmname;
+	}
+
 	public String getM_id() {
 		return m_id;
 	}
@@ -86,14 +94,6 @@ public class L_MemberBean {
 	
 	public void setM_cboss(String m_cboss) {
 		this.m_cboss = m_cboss;
-	}
-	
-	public String getM_cmanager() {
-		return m_cmanager;
-	}
-	
-	public void setM_cmanager(String m_cmanager) {
-		this.m_cmanager = m_cmanager;
 	}
 	
 	public String getM_cmemal() {
