@@ -12,7 +12,7 @@
 <meta name="author" content="">
 
 <title>SB Admin 2 - Bootstrap Admin Theme</title>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- Bootstrap Core CSS -->
 <link href="resources/test/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -37,11 +37,12 @@
 
 </head>
 <style>
-#bor{
-margin-top:3%;
-margin-right: 9%;
-margin-bottom: -10px;
+#bor {
+	margin-top: 3%;
+	margin-right: 9%;
+	margin-bottom: -10px;
 }
+
 #main {
 	margin-left: 5%;
 }
@@ -204,56 +205,102 @@ margin-bottom: -10px;
 		<div id="page-wrapper">
 			<div class="container-fluid">
 				<div class="row">
-							<div class="form-group row pull-right" id='bor'>
-								<div class='col-xs-4'>
-								<select class="form-control" id='selectBox'>
-									<option value='name'>이름</option>
-									<option value='code'>사번</option>
-								</select> 
-								</div>
-								<div class='col-xs-5'>
-								<input type="text" class="form-control" id='search' onkeyup="searchData();">
-								</div>
-								 <input type="button" class="btn btn-primary " onclick="searchData();" value='검색'>
-							
-								</div>
+					<div class="form-group row pull-right" id='bor'>
+						<div class='col-xs-4'>
+							<select class="form-control" id='selectBox'>
+								<option value='name'>이름</option>
+								<option value='code'>사번</option>
+							</select>
+						</div>
+						<div class='col-xs-5'>
+							<input type="text" class="form-control" id='search'
+								onkeyup="searchData();">
+						</div>
+						<input type="button" class="btn btn-primary "
+							onclick="searchData();" value='검색'>
+
+					</div>
 					<div class="col-lg-10" id='main'>
 
 
 
 
-<!-- +"&type="+encodeURIComponent(document.getElementById('select').options[document.getElementById('select').selectedIndex].value]) -->
-	<script>
-	function searchData2(){
-	var target=document.getElementById("selectBox");
-	  alert('선택된 옵션 text 값=' + target.options[target.selectedIndex].text); 
-	  alert('선택된 옵션 value 값=' + target.options[target.selectedIndex].value);  
+						<!-- +"&type="+encodeURIComponent(document.getElementById('select').options[document.getElementById('select').selectedIndex].value]) -->
+						<script>
+					/* 		function searchData2() {
+								var target = document
+										.getElementById("selectBox");
+								alert('선택된 옵션 text 값='
+										+ target.options[target.selectedIndex].text);
+								alert('선택된 옵션 value 값='
+										+ target.options[target.selectedIndex].value);
 
-	}
-	
-	
-	
-	
-	var request = new XMLHttpRequest();
-	function searchData() {
-		var target=document.getElementById("selectBox");
-		var sb=target.options[target.selectedIndex].value
-		request.open("post","./ajsearchData?data="+encodeURIComponent(document.getElementById('search').value)+'&type='+encodeURIComponent(sb),true);
-		request.onreadystatechange = searchProcess; 
-		request.send(null);
-	}
-	function searchProcess(){
-		var table=document.getElementById('test');
-		table.innerHTML='';
-		if(request.readyState == 4 && request.status == 200){
-			var obj= eval('('+ request.responseText + ')');
-			var result = object.json;
-			
-		}
-	}	
-	</script>
+							} */
 
-							
+							var request = new XMLHttpRequest();
+							function searchData() {
+								var target = document
+										.getElementById("selectBox");
+								var sb = target.options[target.selectedIndex].value
+								request
+										.open(
+												"post",
+												"./ajempsearchData?data="
+														+ encodeURIComponent(document
+																.getElementById('search').value)
+														+ '&type='
+														+ encodeURIComponent(sb),
+												true);
+								request.onreadystatechange = searchProcess;
+								request.send(null);
+							}
+							function searchProcess() {
+								var table = document.getElementById('test');
+								table.innerHTML = '';
+								if (request.readyState == 4
+										&& request.status == 200) {
+									/*  var data=JSON.parse(request.responseText); */
+									var data = eval('(' + request.responseText
+											+ ')');
+									var result = data.result;
+									/* var data=eval('('+request.responseText+')'); */
+									var list = '';
+									for (var i = 0; i < result.length; i++) {
+										var row = table.insertRow(0);
+										/* for(var j=0;j<result[i].length;j++){
+											console.log(result[i][j].e_code);
+											list+='<tr>'
+												+'<td>'+data[i].result[i][j].e_code+'</td>'
+												+'<td>'+data[i].result[i][j].e_name+'</td>'
+												+'<td>'+data[i].result[i][j].e_rank_name+'</td>'
+												+'<td>'+data[i].result[i][j].e_dept_name+'</td></tr>';
+										 }
+										table.innerHTML=list;
+										 */
+
+										for (var j = 0; j < result[i].length; j++) {
+											var cell = row.insertCell(j);
+											cell.innerHTML = result[i][j].value;
+										}
+									}
+								}
+							}
+
+							/* 	var list='';	
+							for(var i=0;i<=data.length;i++){
+								console.log(data[i].e_code);
+								list+='<tr>'
+									+'<td>'+data[i].e_code+'</td>'
+									+'<td>'+data[i].e_name+'</td>'
+									+'<td>'+data[i].e_rank_name+'</td>'
+									+'<td>'+data[i].e_dept_name+'</td></tr>';
+								}
+							$('#test').html(list);
+								
+							} */
+						</script>
+
+
 
 						<div class="panel panel-default">
 							<div class="panel-heading">
@@ -286,14 +333,15 @@ margin-bottom: -10px;
 										<tr>
 											<!-- <td><button class='btn btn-primary btn-xs'onclick="add_row()"><span class='glyphicon glyphicon-arrow-up'></span></button><br /><button class='btn btn-primary btn-xs' onclick="add_drow()"><span class='glyphicon glyphicon-arrow-down'></span></button></td> -->
 											<td>${board.e_code}</td>
-											<td><a href='empInfo?e_code=${board.e_name}' onclick="popupOpen2()">${board.e_name}</a></td>
+											<td><a href='#' id='infotag'
+												>${board.e_name}</a></td>
 											<td>${board.rank_name}</td>
 											<td>${board.dept_name}</td>
 										</tr>
 									</c:forEach>
 								</tbody>
 
-<%-- 'empInfo?e_code=${board.e_name}' --%>
+								<%-- 'empInfo?e_code=${board.e_name}' --%>
 
 
 								</tbody>
@@ -315,67 +363,24 @@ margin-bottom: -10px;
 										</a></li>
 									</ul>
 								</nav>
-
 							</div>
 							<div class="col-md-1">
 								<a href="javascript:popupOpen();" class="btn btn-primary"
 									style="margin: 40px">등록</a>
 							</div>
-
-
-
-
-
-
-
-
 							<script type="text/javascript">
 								function popupOpen() {
-									window.name='employmentList'
+									window.name = 'employmentList'
 									var popUrl = "empinsertForm"; //팝업창에 출력될 페이지 URL
-
 									var popOption = "width=1200, height=900, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
-
-									openWin=window.open(popUrl, "", popOption);
-
+									openWin = window
+											.open(popUrl, "", popOption);
 								}
 								function sendtest() {
 									openWin.document.get
-									
 								}
 							</script>
-
-
-
-
-							<script type="text/javascript">
-								function popupOpen2() {
-									
-									var popUrl = "empinsertForm"; //팝업창에 출력될 페이지 URL
-
-									var popOption = "width=1200, height=900, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
-
-									window.open(popUrl, "", popOption);
-
-								}
-							</script>
-
-
-
-
-
-
-
 						</div>
-
-
-
-
-
-
-
-
-
 					</div>
 					<!-- /.col-lg-12 -->
 				</div>
@@ -384,7 +389,6 @@ margin-bottom: -10px;
 			<!-- /.container-fluid -->
 		</div>
 		<!-- /#page-wrapper -->
-
 	</div>
 	<!-- /#wrapper -->
 
@@ -400,7 +404,7 @@ margin-bottom: -10px;
 	<!-- Custom Theme JavaScript -->
 	<script src="resources/test/dist/js/sb-admin-2.js"></script>
 	<script>
-		function add_row() {
+	function add_row() {
 			var tr = $(this);
 			console.log(tr);
 			var my_tbody = document.getElementById('test');
@@ -431,34 +435,6 @@ margin-bottom: -10px;
 			cell4.innerHTML = "테스트";
 			cell5.innerHTML = "테스트";
 		}
-		
-		
-		
-	function aj(){	
-		// 미리 팝업을 띄워놓고. 
-		var w = window.open("about:blank","_blank");
-
-
-		// ajax process
-		$.ajax({
-			url:"url주소",
-			method:"POST",
-			data:formData,
-			dataType:"html",
-			success: eventSuccess,
-			error: function(xhr, status, error) {alert(error);}
-		});
-	}
-		function eventSuccess(data)
-		{
-			//여기서 팝업된 창의 주소를 변경하자.
-			w.location.href = "팝업주소";
-		}
-		
 	</script>
-	
-	
-	
 </body>
-
 </html>

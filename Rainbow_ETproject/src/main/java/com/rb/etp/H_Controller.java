@@ -50,11 +50,20 @@ public class H_Controller {
 	public  ModelAndView empInfo (HttpServletRequest req) {
 		mav=new ModelAndView();
 		String test=req.getParameter("e_code");
-		System.out.println(test);
 		mav=emp.empInfo(test);
 		return mav;
 	}
-	@RequestMapping(value = "/ajsearchData", produces = "application/json; charset=utf8")
+	
+	
+	@RequestMapping(value = "/ajempInfo")
+	public  ModelAndView ajempInfo (HttpServletRequest req) {
+		mav=new ModelAndView();
+		String test=req.getParameter("e_name");
+		System.out.println(test);
+	/*	mav=emp.empInfo(test);*/
+		return mav;
+	}
+	@RequestMapping(value = "/ajempsearchData", produces = "application/json; charset=utf8")
 	public  @ResponseBody String ajsearchData (HttpServletRequest req) {
 		mav=new ModelAndView();
 		String data=req.getParameter("data");

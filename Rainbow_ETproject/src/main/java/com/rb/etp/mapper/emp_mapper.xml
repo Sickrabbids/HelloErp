@@ -20,7 +20,7 @@
 	</select>
 	
 	<select id="empajnamesearch" resultType="EmpDto" parameterType="String">
-		SELECT * FROM EMP WHERE E_ID='heo' AND E_NAME=#{code} 
+		SELECT * FROM EMP WHERE E_ID='heo' AND E_NAME LIKE '%'||#{name}||'%'
 	</select>
 <select id="empajcodesearch" resultType="EmpDto" parameterType="String">
 		SELECT * FROM EMP WHERE E_ID='heo' AND E_CODE LIKE '%'||#{code}||'%' 

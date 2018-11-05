@@ -29,13 +29,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home() {
-		
 		mav=new ModelAndView();
-		
-		int i=tt.test();
-		
-		System.out.println("테스트중입니다"+i);
-		mav.addObject("test", i);
 		mav.setViewName("home");
 		return mav;
 	}
