@@ -54,56 +54,56 @@
 									style="height: 150px; width: 140px"></td>
 								<td colspan="2" align="left"><font size=4>사 원 번 호 :
 								</font> <input type="text" class="form-control" size="20" name='e_code'
-									placeholder="필수입력사항입나디." id='code'>&nbsp;&nbsp;
+									placeholder="필수입력사항입나디." id='code' maxlength="10">&nbsp;&nbsp;
 									<button type="button" onclick="multicheck()">중복검사</button></td>
 								<td colspan="2" align="left"><font size=4>사 원 이 름 :
 								</font> <input type="text" class="form-control" size="20" name='e_name'
-									placeholder="필수입력사항입나디." id='name'></td>
+									placeholder="필수입력사항입나디." id='name' maxlength="15"></td>
 							</tr>
 							<tr>
 								<td colspan="2" align="left"><font size=4>주 민 번 호 :
 								</font> <input type="text" class="form-control" size="20"
-									name='e_idnum' placeholder="필수입력사항입나디." id='pnum'></td>
+									name='e_idnum' placeholder="필수입력사항입나디." id='pnum'maxlength="14"></td>
 								<td colspan="3" align="left"><font size=4>입 사 일 : </font> <input
 									type="text" class="form-control" size="20" name='e_indate'
-									placeholder="필수입력사항입나디." id='hire'></td>
+									placeholder="필수입력사항입나디." id='hire' maxlength="30"></td>
 							</tr>
 							<tr>
 								<td colspan="2" align="left"><font size=4>이 메 일 : </font> <input
-									type="text" class="form-control" size="20" name='e_email'></td>
+									type="text" class="form-control" size="20" name='e_email' maxlength="50" id='email'></td>
 								<td colspan="3" align="left"><font size=4>전 화 번 호 :
 								</font> <input type="text" class="form-control" size="20"
-									name='e_phone' placeholder="필수입력사항입나디." id='phone'></td>
+									name='e_phone' placeholder="필수입력사항입나디." id='phone' maxlength="13"></td>
 							</tr>
 							<tr>
 								<td colspan="2" align="left"><font size=4>은 행 명 : </font> <input
-									type="text" class="form-control" size="20" name='e_bankname'></td>
+									id='bname'type="text" class="form-control" size="20" name='e_bankname' maxlength="15"></td>
 								<td colspan="3" align="left"><font size=4>계 좌 번 호 :
-								</font> <input type="text" class="form-control" size="20"
-									name='e_banknum'></td>
+								</font> <input type="text" class="form-control" size="20" id='bnum'
+									name='e_banknum' maxlength="20"></td>
 							</tr>
 							<tr>
 								<td colspan="5" align="center"><font size=4>주 소: </font> <input
 									type="text" class="form-control" size="95" name='e_address'
-									placeholder="필수입력사항입나디." id='address'></td>
+									placeholder="필수입력사항입나디." id='address' maxlength="100"></td>
 							</tr>
 							<tr>
 								<td colspan="5" align="center"><font size=4>비 고: </font> <input
-									type="text" class="form-control" size="95" name='e_bigo'></td>
+								id='bigo'	type="text" class="form-control" size="95" name='e_bigo' maxlength="100"></td>
 							</tr>
 							<tr>
-								<td colspan="2" align="right"><font size=4>기 본 급 :</font><input
-									type="text" class="form-control" size="20" name='e_basicpay'></td>
+								<td colspan="2" align="right"><font size=4>기 본 급 :</font><input placeholder="필수입력사항입나디."
+									type="text" class="form-control" size="20" name='e_basicpay' id='pay' maxlength="9"></td>
 								<td colspan="3" align="center"><font size=4>재 직 상 태
 										:</font><input type="text" class="form-control" size="8"
-									name='e_state' placeholder="재직1 퇴사 2" id='state'></td>
+									id='state'name='e_state' placeholder="재직1 퇴사 2" id='state' maxlength="1"></td>
 							</tr>
 							<tr>
 								<td colspan="2" align="right"><font size=4>직 급 : </font> <input
-									type="text" class="form-control" size="20" name='rank_name'></td>
+									id='rank'type="text" class="form-control" size="20" name='rank_name' maxlength="15"></td>
 								<td colspan="3" align="center"><font size=4>부 서 명 :
-								</font> <input type="text" class="form-control" size="20"
-									name='dept_name'></td>
+								</font> <input type="text" class="form-control" size="20" maxlength="15"
+									id='dept'name='dept_name'></td>
 							</tr>
 							<tr align="center">
 								<td colspan="4"><input type="submit"
@@ -117,6 +117,7 @@
 	</div>
 </body>
 <script>
+var trust=0;
 var request = new XMLHttpRequest();
 	function multicheck(){
 		request.open("post","./ajmulticheck?code="+encodeURIComponent(document
@@ -128,10 +129,21 @@ var request = new XMLHttpRequest();
 		if (request.readyState == 4
 				&& request.status == 200) {
 			var result =request.responseText
-			console.log(result);
-		document.getElementById('code').focus();
+			var code= document.getElementById('code').value;
+			if(result!=0){
+				alert('중복된 사번입니다.');
+				document.getElementById('code').focus();
+				$('#code').val('');
+			}
+			else if(code =='' || code ==null){
+				alert('사번은 반드시 입력해주세요');
+				}
+			else if (result==0){
+				alert('사용가능한 사번입니다');
+				trust=1;
+			}
+			}
 		}
-	}
 
 
 	function formcheck(){
@@ -142,6 +154,8 @@ var request = new XMLHttpRequest();
 		var phone= document.getElementById('phone').value;
 		var address= document.getElementById('address').value;
 		var state= document.getElementById('state').value;
+		var state= document.getElementById('state').value;
+		var pay= document.getElementById('pay').value;
 		
 		
 		if(code =='' || code ==null){
@@ -173,6 +187,14 @@ var request = new XMLHttpRequest();
 		}else if (state == "" || state == null) {
 			alert("재직상태는 반드시 입력해주세요");
 			document.getElementById('state').focus();
+			return false;
+		}else if (pay == "" || pay == null) {
+			alert("기본급은 반드시 입력해주세요");
+			document.getElementById('pay').focus();
+			return false;
+		}else if (trust!=1) {
+			alert("중복검사는 반드시 하시기 바랍니다.");
+			document.getElementById('code').focus();
 			return false;
 		}
 		alert('성공');

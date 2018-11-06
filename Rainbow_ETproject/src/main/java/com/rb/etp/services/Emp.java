@@ -30,6 +30,24 @@ public class Emp {
 
 	public ModelAndView empinsert(EmpDto eDto) {
 		mav = new ModelAndView();
+		if(eDto.getE_email().equals("") || eDto.getE_email() ==null) {
+			eDto.setE_email("등록된 이메일이 없습니다.");
+		}
+		if(eDto.getE_bankname().equals("") || eDto.getE_bankname() ==null) {
+			eDto.setE_bankname("등록된 은행이 없습니다.");
+		}
+		if(eDto.getE_banknum().equals("") || eDto.getE_banknum() ==null) {
+			eDto.setE_banknum("등록된 계좌번호가 없습니다.");
+		}
+		if(eDto.getE_bigo().equals("") || eDto.getE_bigo() ==null) {
+			eDto.setE_bigo("등록된 비고가 없습니다.");
+		}
+		if(eDto.getRank_name().equals("") || eDto.getRank_name() == null) {
+			eDto.setRank_name("등록된 직급이 없습니다.");
+		}
+		if(eDto.getDept_name().equals("") || eDto.getDept_name() ==null) {
+			eDto.setDept_name("등록된 부서가 없습니다.");
+		}
 		ie.insertemp(eDto);
 		return mav;
 	}
@@ -37,24 +55,27 @@ public class Emp {
 	public String empInfo(String test) {
 		mav = new ModelAndView();
 		EmpDto eDto = ie.empInfo(test);
-		StringBuilder sb = new StringBuilder();
+		Gson gson=new Gson(); 
+		String json=gson.toJson(eDto);
+		return json;
+		/*StringBuilder sb = new StringBuilder();
 		sb.append("{\"result\":[");
-			sb.append("[{\"value\":\"" + eDto.getE_code() + "\"},");
-			sb.append("[{\"value\":\"" + eDto.getE_name() + "\"},");
-			sb.append("[{\"value\":\"" + eDto.getE_idnum() + "\"},");
-			sb.append("[{\"value\":\"" + eDto.getE_indate() + "\"},");
-			sb.append("[{\"value\":\"" + eDto.getE_email() + "\"},");
-			sb.append("[{\"value\":\"" + eDto.getE_phone() + "\"},");
-			sb.append("[{\"value\":\"" + eDto.getE_bankname() + "\"},");
-			sb.append("[{\"value\":\"" + eDto.getE_banknum() + "\"},");
-			sb.append("[{\"value\":\"" + eDto.getE_address() + "\"},");
-			sb.append("[{\"value\":\"" + eDto.getE_bigo() + "\"},");
-			sb.append("[{\"value\":\"" + eDto.getE_basicpay() + "\"},");
-			sb.append("[{\"value\":\"" + eDto.getE_state() + "\"},");
-			sb.append("[{\"value\":\"" + eDto.getDept_name() + "\"},");
-			sb.append("[{\"value\":\"" + eDto.getRank_name()+ "\"},");
+			sb.append("[{\"e_code\":\"" + eDto.getE_code() + "\"},");
+			sb.append("{\"value\":\"" + eDto.getE_name() + "\"},");
+			sb.append("{\"value\":\"" + eDto.getE_idnum() + "\"},");
+			sb.append("{\"value\":\"" + eDto.getE_indate() + "\"},");
+			sb.append("{\"value\":\"" + eDto.getE_email() + "\"},");
+			sb.append("{\"value\":\"" + eDto.getE_phone() + "\"},");
+			sb.append("{\"value\":\"" + eDto.getE_bankname() + "\"},");
+			sb.append("{\"value\":\"" + eDto.getE_banknum() + "\"},");
+			sb.append("{\"value\":\"" + eDto.getE_address() + "\"},");
+			sb.append("{\"value\":\"" + eDto.getE_bigo() + "\"},");
+			sb.append("{\"value\":\"" + eDto.getE_basicpay() + "\"},");
+			sb.append("{\"value\":\"" + eDto.getE_state() + "\"},");
+			sb.append("{\"value\":\"" + eDto.getDept_name() + "\"},");
+			sb.append("{\"value\":\"" + eDto.getRank_name()+ "\"}],");
 		sb.append("]}");
-		return sb.toString();
+		return sb.toString();*/
 	}
 
 	public String empajsearch(HashMap<String, String> sMap) {
@@ -83,19 +104,8 @@ public class Emp {
 
 	}
 
-	public String ajmulticheck(String e_code) {
+	public int ajmulticheck(String e_code) {
 		int result=ie.ajmulticheck(e_code);
-		String check=null;
-		if(result!=0) {
-			check="중복";
-			return check;
-		}
-		else if(result==0) {
-			check="중복아님";
-			return check;
-		}
-		
-		
-		return null;
+		return  result;
 	}
 }

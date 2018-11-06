@@ -35,7 +35,6 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-</head>
 <style>
 #bor {
 	margin-top: 3%;
@@ -68,6 +67,7 @@
 	text-align: left;
 }
 </style>
+</head>
 <body>
 
 	<div id="wrapper">
@@ -342,7 +342,6 @@
 								<%-- 'empInfo?e_code=${board.e_name}' --%>
 
 
-								</tbody>
 							</table>
 							<div class="col-md-4"></div>
 							<div class="col-md-5" style="margin: 20px">
@@ -373,6 +372,7 @@
 									var popOption = "width=1200, height=900, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
 									openWin = window
 											.open(popUrl, "", popOption);
+
 								}
 								function sendtest() {
 									openWin.document.get
@@ -402,24 +402,59 @@
 	<!-- Custom Theme JavaScript -->
 	<script src="resources/test/dist/js/sb-admin-2.js"></script>
 	<script>
+	function popupOpen() {
+		window.name = 'employmentList'
+		var popUrl = "empinsertForm"; //팝업창에 출력될 페이지 URL
+		var popOption = "width=1200, height=900, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
+		openWin = window
+				.open(popUrl, "", popOption);
+	}
+	
 	function empAjInfo(name){
-		console.log(name);
 		var e_name=name;
-		console.log(e_name);
 		$.ajax({
 			type:'POST',
 			url:'ajempInfo?e_name='+e_name,
 			dataType:'json',
 			success:function(data){
-						
-			},
+				console.log(data);
+				 e_code=data.e_code;
+				console.log(e_code);
+				
+				
+				
+				var openWin;
+				var popUrl = "empinsertForm"; //팝업창에 출력될 페이지 URL
+				var popOption = "width=1200, height=900, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
+				var openWin = window.open(popUrl, "", popOption); 
+				
+				
+				   openWin.document.getElementById('code').value=data.e_code; 
+				    openWin.document.getElementById('name').value=data.e_name; 
+				  openWin.document.getElementById('pnum').value=data.e_idnum; 
+				  openWin.document.getElementById('hire').value=data.e_indate; 
+				  openWin.document.getElementById('email').value=data.e_email;
+				  openWin.document.getElementById('phone').value=data.e_phone;
+				  openWin.document.getElementById('bname').value=data.e_bankname;
+				  openWin.document.getElementById('bnum').value=data.e_banknum;
+				  openWin.document.getElementById('address').value=data.e_address;
+				  openWin.document.getElementById('bigo').value=data.e_bigo;
+				  openWin.document.getElementById('pay').value=data.e_basicpay;
+				  openWin.document.getElementById('state').value=data.e_state;
+				  openWin.document.getElementById('rank').value=data.rank_name;
+				  openWin.document.getElementById('dept').value=data.dept_name;   
+	 			  },
 			error:function(error){
-				console.log(error);
+			 	console.log(error); 
 			}
 		});
 		
-		
+		   openWin.document.getElementById('code').value=e_code;  
 	}
+	
+
+	
+	
 	function add_row() {
 			var tr = $(this);
 			console.log(tr);

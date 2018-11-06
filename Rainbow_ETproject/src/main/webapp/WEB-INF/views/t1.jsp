@@ -7,6 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h1>테스트 페이지</h1>
 
+<input type="text" id='test'>
 </body>
+<script>
+console.log()
+</script>
 </html>

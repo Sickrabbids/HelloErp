@@ -46,6 +46,7 @@ public class H_Controller {
 		eDto.setE_id("heo");
 		System.out.println(eDto.getDept_name());
 		mav=emp.empinsert(eDto);
+		mav.setViewName("empinsertForm");
 		return mav;
 	}
 /*	@RequestMapping(value = "/empInfo")
@@ -57,12 +58,12 @@ public class H_Controller {
 	}
 	*/
 	
-	@RequestMapping(value = "/ajempInfo")
+	@RequestMapping(value = "/ajempInfo",produces = "application/json; charset=utf8")
 	public  @ResponseBody String ajempInfo (HttpServletRequest req) {
 		mav=new ModelAndView();
 		String test=req.getParameter("e_name");
 		String json=emp.empInfo(test);
-		return test;
+		return json;
 	}
 	@RequestMapping(value = "/ajempsearchData", produces = "application/json; charset=utf8")
 	public  @ResponseBody String ajsearchData (HttpServletRequest req) {
@@ -77,12 +78,20 @@ public class H_Controller {
 	}
 	
 	@RequestMapping(value = "/ajmulticheck", produces = "application/json; charset=utf8")
-	public  @ResponseBody String ajmulticheck (HttpServletRequest req) {
+	public  @ResponseBody int ajmulticheck (HttpServletRequest req) {
 		mav=new ModelAndView();
 		String e_code=req.getParameter("code");
-		String result=emp.ajmulticheck(e_code);
-		System.out.println(result);
+		int result=emp.ajmulticheck(e_code);
 		return result;
 	}
+	
+	
+	@RequestMapping(value = "/t1", produces = "application/json; charset=utf8")
+	public ModelAndView t1 (HttpServletRequest req) {
+		mav=new ModelAndView();
+		mav.setViewName("t1");
+		return mav;
+	}
+	
 	
 }
