@@ -6,8 +6,8 @@
 
 <mapper namespace="com.rb.etp.Dao.Iemp">
 
-<select id="getEmpList" resultType="EmpDto" >
-		SELECT * FROM EMP WHERE E_ID='heo'
+<select id="getEmpList" resultType="EmpDto" parameterType="Integer">
+		SELECT * FROM EMP WHERE E_ID='heo' AND E_STATE=#{e_state}
 	</select>
 
 
@@ -34,12 +34,33 @@
 	</select>
 	
 	<select id="empajnamesearch" resultType="EmpDto" parameterType="String">
-		SELECT * FROM EMP WHERE E_ID='heo' AND E_NAME LIKE '%'||#{name}||'%'
-	</select>
-<select id="empajcodesearch" resultType="EmpDto" parameterType="String">
-		SELECT * FROM EMP WHERE E_ID='heo' AND E_CODE LIKE '%'||#{code}||'%' 
+		SELECT * FROM EMP WHERE E_ID='heo' AND ${E} LIKE '%'||#{data}||'%' AND E_STATE=${e_state}
 	</select>
 <select id="ajmulticheck" resultType="Integer" parameterType="String">
 		SELECT COUNT(*) FROM EMP WHERE E_CODE=#{e_code}
 	</select>
+	
+	<update id="update" parameterType="HashMap">
+	UPDATE EMP SET E_NAME=#{e_name},E_IDNUM=#{e_idnum},E_INDATE=#{e_indate},E_EMAIL=#{e_email},E_PHONE=#{e_phone},E_BANKNAME=#{e_bankname},E_BANKNUM=#{e_banknum},E_ADDRESS=#{e_address},E_BIGO=#{e_bigo},
+							E_BASICPAY=#{e_basicpay},E_STATE=#{e_state},DEPT_NAME=#{dept_name},RANK_NAME=#{rank_name},E_CODE=#{e_code} WHERE E_ID='heo' AND E_CODE=#{onejo}
+	</update>
+	
+	<select id="empInfo2" resultType="EmpDto" parameterType="String">
+		SELECT * FROM EMP WHERE E_ID='heo' AND E_CODE=#{code}
+	</select>
+	<select id="certificateEmpForm"  parameterType="String" resultType="EmpDto">
+	select emp.e_name,emp.e_idnum,emp.e_address,emp.rank_name,emp.dept_name,emp.e_phone,emp.e_indate,member.m_cno,member.m_cname,member.m_cboss
+from emp,member where emp.e_id=member.m_id AND member.m_id='heo' AND emp.e_code=#{e_code}
+	</select>
+	<insert id="insertimg"  parameterType="HashMap">	
+	INSERT INTO EMP_PHOTO VALUES(#{ep_id},#{ep_code},#{sys},#{ori})
+	</insert>
+	
+	<select id="empInfoPic" resultType="HashMap" parameterType="HashMap">
+		SELECT * FROM EMP_PHOTO WHERE EP_ID=#{ep_id} AND EP_CODE=#{ep_code}
+	</select>
+	
+		<update id="retire" parameterType="HashMap">
+	UPDATE EMP SET E_STATE=${e_state} WHERE E_ID=#{e_id} AND E_CODE=#{e_code}
+	</update>
 </mapper>

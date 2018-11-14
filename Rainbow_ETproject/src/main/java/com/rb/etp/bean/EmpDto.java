@@ -4,7 +4,7 @@ package com.rb.etp.bean;
 public class EmpDto {
   
   private String e_id;
-  private String e_m_id;
+ /* private String e_m_id;*/
   private String e_code;
   private String e_name;
   private String e_idnum;
@@ -19,11 +19,30 @@ public class EmpDto {
   private String e_state;
   private String dept_name;
   private String rank_name;
+/*  private String m_cno;
+  private String m_cboss;
+  private String m_cname;*/
   
   
   
-  
-  
+/*public String getM_cname() {
+	return m_cname;
+}
+public void setM_cname(String m_cname) {
+	this.m_cname = m_cname;
+}
+public String getM_cno() {
+	return m_cno;
+}
+public void setM_cno(String m_cno) {
+	this.m_cno = m_cno;
+}
+public String getM_cboss() {
+	return m_cboss;
+}
+public void setM_cboss(String m_cboss) {
+	this.m_cboss = m_cboss;
+}*/
 public String getE_id() {
 	return e_id;
 }
@@ -42,12 +61,12 @@ public String getRank_name() {
 public void setRank_name(String rank_name) {
 	this.rank_name = rank_name;
 }
-public String getE_m_id() {
+/*public String getE_m_id() {
 	return e_m_id;
 }
 public void setE_m_id(String e_m_id) {
 	this.e_m_id = e_m_id;
-}
+}*/
 public String getE_code() {
 	return e_code;
 }

@@ -17,7 +17,6 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
-
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
 	<beans:bean
@@ -71,6 +70,15 @@
 			value="com.rb.etp.Dao.Iemp" />
 	</beans:bean>
 
+	<!--파일첨부(Multipart Resolver설정: form태그 enctype="multipart/form-data"인 경우 
+		서버의 Bean으로 전달해줌 -->
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="defaultEncoding" value="UTF-8" />
+		<beans:property name="maxUploadSize" value="100000000" />
+		<beans:property name="maxInMemorySize"
+			value="100000000" />
+	</beans:bean>
 
 
 

@@ -6,6 +6,5 @@
 	<typeAliases>
 		 <typeAlias  alias="EmpDto" type="com.rb.etp.bean.EmpDto"/>
  		<package name="com.rb.etp.bean"/>
- </typeAliases>
+ 	</typeAliases>
 </configuration>
-

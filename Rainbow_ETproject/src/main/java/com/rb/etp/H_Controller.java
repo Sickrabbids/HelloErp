@@ -1,50 +1,52 @@
 package com.rb.etp;
 
 
+import java.io.File;
 import java.util.HashMap;
-import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.rb.etp.bean.EmpDto;
 import com.rb.etp.services.Emp;
 
 
+
 @Controller
 public class H_Controller {
-	
-	
 	ModelAndView mav;
-	
 	@Autowired
 	Emp emp;
-	
-	
-	@RequestMapping(value = "/employmentList", method = RequestMethod.GET)
-	public ModelAndView empList() {
+	@RequestMapping(value = "/employmentList")  //직원리스트페이지 
+	public ModelAndView empList(HttpServletRequest req) {
+		String state= req.getParameter("state");
+		int e_state=Integer.parseInt(state);
 		mav=new ModelAndView();
-		mav=emp.empList();
+		mav=emp.empList(e_state);
+		mav.addObject("state", e_state);
 		mav.setViewName("employmentList");
 		return mav;
 	}
-	@RequestMapping(value = "/empinsertForm")
+	@RequestMapping(value = "/empinsertForm")    //직원등록 팝업창 호출
 	public ModelAndView empinsertForm() {
 		mav=new ModelAndView();
 		mav.setViewName("empinsertForm");
 		return mav;
 	}
-	@RequestMapping(value = "/empinsert")
+	@RequestMapping(value = "/empinsert")		//직원등록	
 	public  ModelAndView empinsert(EmpDto eDto) {
 		mav=new ModelAndView();
 		eDto.setE_id("heo");
-		System.out.println(eDto.getDept_name());
 		mav=emp.empinsert(eDto);
 		mav.setViewName("empinsertForm");
 		return mav;
@@ -57,41 +59,106 @@ public class H_Controller {
 		return mav;
 	}
 	*/
-	
-	@RequestMapping(value = "/ajempInfo",produces = "application/json; charset=utf8")
-	public  @ResponseBody String ajempInfo (HttpServletRequest req) {
+	@RequestMapping(value = "/empInfo",produces = "application/json; charset=utf8")   //직원 상세팝업창 호출
+	public ModelAndView empInfoForm(HttpServletRequest req) {
 		mav=new ModelAndView();
-		String test=req.getParameter("e_name");
-		String json=emp.empInfo(test);
-		return json;
+		String code=req.getParameter("e_code");
+		mav=emp.empInfo2(code, req);
+		return mav;
 	}
-	@RequestMapping(value = "/ajempsearchData", produces = "application/json; charset=utf8")
+	
+	
+	@RequestMapping(value = "/ajempsearchData", produces = "application/json; charset=utf8")  	//직원검색
 	public  @ResponseBody String ajsearchData (HttpServletRequest req) {
-		mav=new ModelAndView();
 		String data=req.getParameter("data");
 		String type=req.getParameter("type");
+		String e_state=req.getParameter("e_state");
 		HashMap<String, String> sMap=new HashMap<>();
 		sMap.put("data", data);
 		sMap.put("type", type);
+		sMap.put("e_state",e_state);
 		String json=emp.empajsearch(sMap);
 		return json;
 	}
 	
-	@RequestMapping(value = "/ajmulticheck", produces = "application/json; charset=utf8")
-	public  @ResponseBody int ajmulticheck (HttpServletRequest req) {
+	@RequestMapping(value = "/update", produces = "application/json; charset=utf8")  		//직원정보 수정
+	public  @ResponseBody String update (HttpServletRequest req, @RequestParam Map<String,String> umap) {
 		mav=new ModelAndView();
+		emp.update(umap);
+		return null;
+	}
+	
+	@RequestMapping(value = "/ajmulticheck", produces = "application/json; charset=utf8")   //사번 중복체크 
+	public  @ResponseBody int ajmulticheck (HttpServletRequest req) {
 		String e_code=req.getParameter("code");
 		int result=emp.ajmulticheck(e_code);
 		return result;
 	}
 	
-	
-	@RequestMapping(value = "/t1", produces = "application/json; charset=utf8")
-	public ModelAndView t1 (HttpServletRequest req) {
+	@RequestMapping(value = "/certificateEmpForm",produces = "application/json; charset=utf8")   //재직증명서
+	public ModelAndView certificateEmpForm(HttpServletRequest req) {
 		mav=new ModelAndView();
-		mav.setViewName("t1");
+		String e_code=req.getParameter("e_code");
+		System.out.println("------------------------------------------");
+		System.out.println(e_code);
+		System.out.println("-------------------------------------------");
+		mav=emp.certificateEmpForm(e_code);
 		return mav;
 	}
 	
 	
-}
+	
+	 @RequestMapping(value = "/fileUpload",produces = "application/json; charset=utf8")     //직원등록+사진업로드
+	    public @ResponseBody String fileUp(MultipartHttpServletRequest multi,EmpDto eDto) {
+	        // 저장 경로 설정
+	        String root = multi.getSession().getServletContext().getRealPath("/");
+	       String path = root+"resources/upload/";
+	       System.out.println(root);
+	        System.out.println("경로="+path); 
+	        String sysName = ""; // 업로드 되는 파일명
+	        eDto.setE_id("heo");
+	        File dir = new File(path);
+	        if(!dir.isDirectory()){
+	            dir.mkdir();
+	        }
+	         
+	        Iterator<String> files = multi.getFileNames();
+	        while(files.hasNext()){
+	            String uploadFile = files.next();
+	                         
+	            MultipartFile mFile = multi.getFile(uploadFile);
+	            String oriName = mFile.getOriginalFilename();
+	            System.out.println("실제 파일 이름 : " +oriName);
+	            sysName = System.currentTimeMillis()+"."
+	                    +oriName.substring(oriName.lastIndexOf(".")+1);
+	             System.out.println("시스템파일이름:"+sysName);
+	             if(oriName.equals("") || oriName==null) {
+	     			oriName="사진없음";
+	     		}
+	     		HashMap<String, String> fMap=new HashMap<>();
+	     		fMap.put("sys", sysName);
+	     		fMap.put("ori", oriName);
+	     		fMap.put("ep_code", eDto.getE_code());
+	     		fMap.put("ep_id", eDto.getE_id());  
+		         emp.empinsert2(eDto,fMap);
+		         try {
+	                mFile.transferTo(new File(path+sysName));
+	            } catch (Exception e) {
+	                e.printStackTrace();
+	            }
+	        }
+	        String fin="success";
+	        return fin;
+	    }
+	 @RequestMapping(value = "/retire",produces = "application/json; charset=utf8")  //직원퇴사처리 
+		public  @ResponseBody String retire(HttpServletRequest req) {
+		String e_code=req.getParameter("e_code");
+		String state=req.getParameter("state");
+		emp.retire(e_code,req,state);
+		String result="success";	
+		 return result;
+		}
+	}
+
+
+

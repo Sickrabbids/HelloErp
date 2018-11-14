@@ -40,8 +40,7 @@ public class HomeController {
 		int i=tt.test();
 		
 		System.out.println("테스트중입니다"+i);
-		mav.addObject("test", i);
-		mav.setViewName("erpmain");
+		mav.setViewName("index");
 		return mav;
 	}
 
