@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.rb.etp.bean.EmpDto;
+import com.rb.etp.bean2.EmpDto;
 import com.rb.etp.services.Emp;
 
 import ch.qos.logback.core.net.SyslogOutputStream;

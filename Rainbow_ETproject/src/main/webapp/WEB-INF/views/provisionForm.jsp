@@ -1,51 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<div>
-	<textarea  style="resize: none;" rows="20px" cols="50px" readonly >
-
-	</textarea>
-	</div>
-	<div>
-	<input type="checkbox" id="pv1" value="check1"  />동의
-	</div>
-	<div>
-	<textarea style="resize: none;" rows="20px" cols="50px" readonly >
-	</textarea>
-	</div>
-	<div>
-	<input type="checkbox" id="pv2" value="check2"/>동의
-	</div>
-	<div>
-	<input type="button" id="nextJoin" onclick="joinFunction();" value="회원가입 " />
-	<input type="button" id="nextCancle" onclick="cancleFunction();" value="취소" />
-	</div>
-</body>
-
-<script>
-
-function joinFunction(){
-	//location.href="joinForm";
-	if(document.getElementById('pv1').cheked==true || document.getElementById('pv2').checked==true ){
-		location.href="joinForm";
-	}else{
-		alert("약관에 동의해 주세요.");
-	} 
-}
-
-function cancleFunction(){
-	
-	location.href="index";
-	
-}
-
-</script>
-
 <!DOCTYPE html >
 <html>
 <head>
@@ -134,8 +87,8 @@ function cancleFunction(){
 							</td>
 						</tr>
 						<tr>
-							<td>
-	<textarea class="form-control" readonly="readonly" rows=5>
+							<td><textarea class="form-control" readonly="readonly"
+									rows=5>
 	가. 수집하는 개인정보의 항목첫째, 회사는 회원가 입, 원활한 고객상담, 각종 서비스의 제공을 위해 최초 회원가입 당시 아래와 같은 최소한의 개인정보를 필수항목으로 수집하고 있습니다.
 	회원가입
 	- 이름, 생년월일, 성별, 아이디, 비밀번호, 별명, 연락처(메일주소, 휴대폰 번호 중 선택), 가입인증정보
@@ -162,7 +115,7 @@ function cancleFunction(){
 					</textarea></td>
 						</tr>
 						<tr align="right">
-							<td><input type="checkbox">&nbsp;&nbsp;이용약관에 동의합니다. <br> <br></td>
+							<td><input type="checkbox"  id="pv1" >&nbsp;&nbsp;이용약관에 동의합니다. <br> <br></td>
 						</tr>
 						<tr>
 							<td>
@@ -178,12 +131,12 @@ function cancleFunction(){
 						</tr>
 						 <tr align="right">
               <td>
-                <input type="checkbox">&nbsp;&nbsp;개인정보 수집 및 이용에 대한 안내에 동의합니다.
+                <input type="checkbox"  id="pv2" >&nbsp;&nbsp;개인정보 수집 및 이용에 대한 안내에 동의합니다.
               </td>
             </tr>
             <tr align="center">
             <td>
-            <a href="joinForm" class="btn btn-danger btn-lg" role="button">&nbsp;&nbsp;회&nbsp;&nbsp; 원&nbsp;&nbsp; 가 &nbsp;&nbsp;입&nbsp;&nbsp;</a>
+            <input type="button" id="nextCancle" class="btn btn-danger btn-lg" onclick="joinFunction();" value="회원 가입" />
             </td>
             </tr>
 					</table>
@@ -207,11 +160,32 @@ function cancleFunction(){
 
 			</div>
 		</div>
+		<!-- <input type="button" id="nextCancle" onclick="cancleFunction();" value="취소" /> -->
 	</footer>
 
-	
+
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+	<script
+		src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+	<script>
+	
+		function joinFunction() {
+			//location.href="joinForm";
+			if (document.getElementById('pv1').cheked == true
+					|| document.getElementById('pv2').checked == true) {
+				location.href = "joinForm";
+			} else {
+				alert("약관에 동의해 주세요.");
+			}
+		}
+
+		function cancleFunction() {
+
+			location.href = "index";
+
+		}
+		
+	</script>
 </body>
 </html>

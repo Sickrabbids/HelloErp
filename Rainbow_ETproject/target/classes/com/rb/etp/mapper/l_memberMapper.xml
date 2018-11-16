@@ -5,16 +5,50 @@
  <select id="memberIdMatching_Dao" resultType="String" parameterType="String">
  	SELECT * FROM MEMBER WHERE M_ID=#{m_id}
  </select>
- 
+ <!-- 로그인  -->
   <select id="logIn" resultType="HashMap" parameterType="HashMap">
  	SELECT M_ID, M_PWD FROM MEMBER WHERE M_ID=#{m_id} AND M_PWD=#{m_pwd}
  </select>
- 
+  <!-- 아이디중복검사  -->
   <select id="L_memberIdMatching_s" resultType="String" parameterType="String">
  	SELECT M_ID FROM MEMBER WHERE M_ID=#{m_id} 
  </select>
+  <!-- 회원리스트  -->
+ <!-- <select id="L_memberList_Dao" resultType="L_MemberBean" parameterType="String">
+ 	SELECT * FROM MEMBER
+ </select> -->
+  <!-- 회원가입  -->
+  <insert id="L_memberJoin_Dao" parameterType="L_MemberBean">
+ 	INSERT INTO MEMBER VALUES(#{m_id}, #{m_pwd}, #{m_cno}, #{m_cname}, #{m_cubusiness}, #{m_ckind}, #{m_caddress}, #{m_cphone}, #{m_cboss}, #{m_cmname}, #{m_cmemail}, #{m_cmphone})
+ </insert>
+  <!-- 회원상세보기  -->
+  <select id="L_memberInfo_Dao" resultType="L_MemberBean" parameterType="String" >
+ 	SELECT * FROM MEMBER WHERE M_ID = #{m_id}
+ </select>
  
- <select id="memberInfo" resultType="L_MemberBean" parameterType="String">
- 	SELECT M_CNAME, M_CMNAME, M_CMPHONE FROM MEMBER
+ <update id="L_memberUpdate_Dao" parameterType="HashMap">
+ 	UPDATE MEMBER SET M_PWD=#{m_pwd}, M_CNO=#{m_cno}, M_CNAME=#{m_cname}, M_CUBUSINESS=#{m_cubusiness}, M_CKIND=#{m_ckind}, M_CADDRESS=#{m_caddress}, M_CPHONE=#{m_cphone}, M_CBOSS=#{m_cboss}, M_CMNAME=#{m_cmname}, M_CMEMAIL=#{m_cmemail}, M_CMPHONE=#{m_cmphone} WHERE M_ID = #{m_id}
+ </update>
+ 
+ <delete id="L_memberLeave_Dao" parameterType="String">
+ 	DELETE FROM MEMBER WHERE M_ID=#{m_id}
+ </delete>
+ 
+ <!-- test  -->
+ <select id="L_memberList_Dao" resultType="L_MemberBean" parameterType="int">
+ 	<!-- SELECT * FROM MEMBER ORDER BY M_ID DESC LIMIT #{pagenum}, #{contentnum}제일 앞 10개씩 -->
+ 	<!--   SELECT * FROM (SELECT M_ID, M_CNAME, M_CMNAME, M_CMPHONE, ROW_NUMBER() OVER (ORDER BY M_ID) R FROM MEMBER)
+  	  WHERE R BETWEEN #{page} AND #{contentPage} -->
+  	  
+  	<![CDATA[  
+  	SELECT * FROM (SELECT ROWNUM RN, M_ID, M_CNAME, M_CMNAME, M_CMPHONE FROM MEMBER WHERE ROWNUM<=#{contentPage})
+	WHERE RN>=#{page}  
+  	]]>
+  	
+ </select>
+ <select id="tcount" resultType="int">
+ 	SELECT COUNT(*) FROM MEMBER
+ 	
+ <!-- end test--> 	
  </select>
 </mapper>

@@ -19,7 +19,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.rb.etp.Dao.testt;
-import com.rb.etp.bean.god;
+import com.rb.etp.bean2.god;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
 

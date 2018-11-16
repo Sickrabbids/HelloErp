@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.rb.etp.Dao.Iemp;
-import com.rb.etp.bean.EmpDto;
+import com.rb.etp.bean2.EmpDto;
 
 @Service
 public class Emp {
