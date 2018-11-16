@@ -6,13 +6,13 @@ public class L_MemberBean {
 	String m_pwd;
 	String m_cno;
 	String m_cname;
-	String m_cbusiness;
+	String m_cubusiness;
 	String m_ckind;
 	String m_caddress;
 	String m_cphone;
 	String m_cboss;
 	String m_cmname;
-	String m_cmemal;
+	String m_cmemail;
 	String m_cmphone;
 	
 	
@@ -56,12 +56,12 @@ public class L_MemberBean {
 		this.m_cname = m_cname;
 	}
 	
-	public String getM_cbusiness() {
-		return m_cbusiness;
+	public String getM_cubusiness() {
+		return m_cubusiness;
 	}
 	
-	public void setM_cbusiness(String m_cbusiness) {
-		this.m_cbusiness = m_cbusiness;
+	public void setM_cubusiness(String m_cubusiness) {
+		this.m_cubusiness = m_cubusiness;
 	}
 	
 	public String getM_ckind() {
@@ -96,14 +96,14 @@ public class L_MemberBean {
 		this.m_cboss = m_cboss;
 	}
 	
-	public String getM_cmemal() {
-		return m_cmemal;
+	public String getM_cmemail() {
+		return m_cmemail;
 	}
-	
-	public void setM_cmemal(String m_cmemal) {
-		this.m_cmemal = m_cmemal;
+
+	public void setM_cmemail(String m_cmemail) {
+		this.m_cmemail = m_cmemail;
 	}
-	
+
 	public String getM_cmphone() {
 		return m_cmphone;
 	}

@@ -131,10 +131,12 @@ vertical-align:middle;
 						<i class="fa fa-caret-down"></i>
 				</a>
 					<ul class="dropdown-menu dropdown-user">
-						<li><a href="#"><i class="fa fa-user fa-fw"></i>내정보</a></li>
-						<li><a href="#"><i class="fa fa-gear fa-fw"></i>회원탈퇴</a></li>
+						<li><a href="#" onclick="myPage('${m_id}' )">
+						<i class="fa fa-user fa-fw"></i>내정보</a></li>
+						<li><a href="memberLeaveForm" ><i class="fa fa-gear fa-fw"></i>회원탈퇴</a></li>
 						<li class="divider"></li>
-						<li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i>로그아웃</a></li>
+						<li><a href="#" onclick="logOut()"><i
+								class="fa fa-sign-out fa-fw"></i>로그아웃</a></li>
 					</ul> <!-- /.dropdown-user --></li>
 				<!-- /.dropdown -->
 			</ul>
@@ -185,13 +187,6 @@ vertical-align:middle;
 								<li><a href="#">생산일지 달력</a></li>
 								<li><a href="#">자재용 달력</a></li>
 								<li><a href="#">이용자 달력</a></li>
-								<!-- <li class="active"><a href="#"><i
-								class="fa fa-files-o fa-fw"></i> Sample Pages<span
-								class="fa arrow"></span></a>
-							<ul class="nav nav-second-level">
-								<li><a class="active" href="blank.html">Blank Page</a></li>
-								<li><a href="login.html">Login Page</a></li>
-							</ul> /.nav-second-level</li> -->
 							</ul>
 					</ul>
 				</div>
@@ -282,14 +277,10 @@ vertical-align:middle;
 								</nav>
 
 							</div>
-							<!-- 	<div class="col-md-1">
-								<a href="javascript:popupOpen();" class="btn btn-primary"
-									style="margin: 40px">등록</a>
-							</div>
-							-->
+
 							<div class="col-md-1">
-								설마여기?ㅋㅋㅋ <a href="#" class="btn btn-primary"
-									style="margin: 40px" onclick='abc()'>등록</a>
+								<a href="#" class="btn btn-primary" style="margin: 40px"
+									onclick='abc()'>등록</a>
 							</div>
 
 
@@ -326,13 +317,9 @@ vertical-align:middle;
 																	.val();
 															console.dir(text);
 															var td = $(this)
-																	.closest(
-																			'tr')
+																	.closest('tr')
 																	.prevAll().cells[1];
-															console
-																	.log('도막사라무=='
-																			+ td
-																					.val());
+															console.log('도막사라무=='+ td.val());
 														}
 													});
 								}
@@ -390,27 +377,37 @@ vertical-align:middle;
 											},
 											error: function(error){
 												console.log("/////");
-												console.log(error)
+												console.log(error);
 												alert(error)
 											}
 										});
 										
 										
 										}
+	/* function LeaveForm(){
+		$.ajax({
+			type:"GET",
+			url:"memberLeaveForm",
+			susccess:function(){
+				
+			},
+			error : function(error){
+				console.log(error);
+				alert(error)
+			}
+			
+		});
+	} */
 								
-								/* 	$(document).ready(function() {
-								    	$("#btn").on("click", function() {
-								       		var text = $("#tbl tr td input").eq(1).val();
-								        	$("#test").text(text);
-								        });
-								    });
-								
-								
-								$('.clickBtn').bind('click', function() { 
-									var trNum = $(this).closest('tr').prevAll().length; 
-									console.log('trNum : ' + trNum); 
-									});
-								 */
+	function myPage(id){
+		console.log(id);
+		window.open("memberInfo?m_id="+id, "memberInfo", "height=600, width=800" );
+	}
+	
+	
+	function logOut() {
+		location.href = "logOut";
+	}
 								 
 							</script>
 
