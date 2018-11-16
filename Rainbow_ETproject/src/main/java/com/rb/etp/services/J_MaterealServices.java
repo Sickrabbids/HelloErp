@@ -48,20 +48,20 @@ public class J_MaterealServices {
 	}
 
 	// 업데이트 인설트 딜리트 이루어지는곳
-	public ModelAndView material_U_I_D(J_material jm) {
+	public ModelAndView material_U_I_D(J_material jm, MultipartHttpServletRequest multi2) {
 		mav = new ModelAndView();
 		HashMap<String, String> mUp = new HashMap<String, String>();
 		mUp = mkey();
 		jm.setGOD_ID(mUp.get("id"));
 		if(mUp.get("connectType").equals("insert")) {
-		MultipartHttpServletRequest multi = (MultipartHttpServletRequest) request;
+		
 
-	    MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
-	    Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
+	    
+	    Iterator<String> iterator = multi2.getFileNames();
 	    MultipartFile multipartFile = null;
 	    System.out.println("?????????????????????????????????????????????????????");
 	    while(iterator.hasNext()){
-	        multipartFile = multipartHttpServletRequest.getFile(iterator.next());
+	        multipartFile = multi2.getFile(iterator.next());
 	        if(multipartFile.isEmpty() == false){
 
 		        System.out.println("------------- file start -------------");

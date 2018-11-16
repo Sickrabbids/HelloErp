@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.rb.etp.bean.J_material;
@@ -55,10 +56,10 @@ public class J_Controller {
 		return mav;
 	}
 	@RequestMapping(value= "material_U_I_D", produces="application/text; charset=utf8")
-	public ModelAndView materialUP_IN_DE(J_material jm){
+	public ModelAndView materialUP_IN_DE(J_material jm,MultipartHttpServletRequest multi){
 		System.out.println("오십니까!!!=========================================");
 		mav=new ModelAndView();
-		mav=jms.material_U_I_D(jm);
+		mav=jms.material_U_I_D(jm,multi);
 		return mav;
 	}
 	

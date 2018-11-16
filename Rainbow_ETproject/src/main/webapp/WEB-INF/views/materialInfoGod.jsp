@@ -286,9 +286,9 @@ function submit(connectType){
 var file=document.getElementById('filePoster');
 function fileInfo(f){
     var file=f.files;   
-    if(file[0].size > 5120*1024){
+    if(file[0].size > 10240*1024){
         
-        alert("파일사이즈가 5MB 초과");
+        alert("파일사이즈가 10MB 초과");
         $('#filePoster').replaceWith($('#filePoster').clone(true));
         
      return;   
