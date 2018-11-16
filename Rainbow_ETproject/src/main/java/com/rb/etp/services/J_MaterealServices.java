@@ -77,7 +77,7 @@ public class J_MaterealServices {
 	    	System.out.println("가격"+jm.getGOD_PRICE());
 
 	    	
-/*		md.materialInsert(jm);	*/
+
 		}else if (mUp.get("connectType").equals("delete")) {
 		md.materialDelete(jm);
 		}else if (mUp.get("connectType").equals("update")) {
