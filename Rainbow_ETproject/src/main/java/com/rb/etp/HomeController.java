@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import com.rb.etp.Dao.testt;
 import com.rb.etp.services.Emp;
 
 import com.rb.etp.services.test;
@@ -24,14 +24,10 @@ public class HomeController {
 	
 	ModelAndView mav;
 	
-	@Autowired
-		test tt;
+@Autowired
+test tt;
+	
 
-	
-	@Autowired
-	Emp emp;
-	
-	
 /*
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home() {

@@ -39,6 +39,7 @@ public class L_memberService {
 		HttpSession session = request.getSession();
 		
 		session.setAttribute("m_id", hm.get("m_id"));
+		System.out.println("뭐냐대체???????"+session.getAttribute("m_id"));
 		/*System.out.println(hm.get("m_id"));
 		System.out.println(hm.get("m_pwd"));*/
 	
@@ -46,7 +47,7 @@ public class L_memberService {
 		if(hm.get("M_ID")==null) { //|| mb.getM_pwd()==null
 			result = 0;
 			return result;
-		}else if(hm.get("M_ID").equals("ker")){
+		}else if(hm.get("M_ID").equals("admin")){
 			result = 1;
 			return result;
 		}else{

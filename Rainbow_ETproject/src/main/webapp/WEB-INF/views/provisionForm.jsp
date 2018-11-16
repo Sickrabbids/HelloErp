@@ -27,7 +27,24 @@
 	</div>
 </body>
 
+<script>
 
+function joinFunction(){
+	//location.href="joinForm";
+	if(document.getElementById('pv1').cheked==true || document.getElementById('pv2').checked==true ){
+		location.href="joinForm";
+	}else{
+		alert("약관에 동의해 주세요.");
+	} 
+}
+
+function cancleFunction(){
+	
+	location.href="index";
+	
+}
+
+</script>
 
 <!DOCTYPE html >
 <html>
@@ -191,7 +208,7 @@
 			</div>
 		</div>
 	</footer>
-	
+
 	
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

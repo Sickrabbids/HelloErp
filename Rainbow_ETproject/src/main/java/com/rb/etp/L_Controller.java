@@ -20,10 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.rb.etp.bean.L_MemberBean;
 import com.rb.etp.services.L_memberService;
 
+
 @Controller
 public class L_Controller {
-
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@Autowired
 	L_memberService ms;
@@ -61,7 +60,6 @@ public class L_Controller {
 	//erp계정 페이지
 	@RequestMapping(value = "/erpmain", method = RequestMethod.GET)
 	public ModelAndView erpMain() {
-		
 		mav = new ModelAndView();
 		mav.setViewName("erpmain");		
 		return mav;

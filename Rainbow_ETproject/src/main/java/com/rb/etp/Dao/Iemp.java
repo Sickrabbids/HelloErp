@@ -1,9 +1,8 @@
 package com.rb.etp.Dao;
 
-import java.util.HashMap;
-import java.util.Hashtable;
+
 import java.util.List;
-import java.util.Map;
+
 
 import com.rb.etp.bean.EmpDto;
 
