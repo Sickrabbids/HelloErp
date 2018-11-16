@@ -85,7 +85,7 @@ height: 10%;
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a data-target="#modal2" data-toggle="modal">로그인<span
+					<li><a data-target="#modal2" data-toggle="modal" href="#">로그인<span
 							class="sr-only"></span></a></li>
 					<li><a href="provisionForm">회원가입</a></li>
 				</ul>
@@ -212,13 +212,13 @@ height: 10%;
 														placeholder="비밀번호를 입력해주세요"></td>
 												</tr>
 												<tr align="center">
-													<td><input type="button" onclick="login();"
+													<td><input type="button" id="logIn" onclick="login();"
 														class="btn btn-primary btn-sm btn-block" value="로 그 인"></td>
 												</tr>
 												<tr align="center">
 
-													<td><a href="provisionForm">회원가입</a>&nbsp;&nbsp;&nbsp;&nbsp; <a
-														href="#">아이디/비밀번호 찾기</a></td>
+													<td><a href="provisionForm">회원가입</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+													<a href="#">아이디/비밀번호 찾기</a></td>
 												</tr>
 
 											</table>
@@ -233,43 +233,56 @@ height: 10%;
 			</div>
 		</div>
 	</div>
-	
+
 	<script>
-		function login(){
-			
-			var data ={}
-			data["m_id"] =$('input[name=m_id]').val();
+
+	
+		$(document).keydown(function(event) {
+			if (event.keyCode == '13') {
+
+				login();
+			}
+		});
+
+		function login() {
+
+			var data = {}
+			data["m_id"] = $('input[name=m_id]').val();
 			data["m_pwd"] = $('input[name=m_pwd]').val();
 			console.log(data["m_id"]);
 			console.log(data["m_pwd"]);
 			console.log(data);
-			
-			 $.ajax({
-				 		contentType:'application/json; charset=UTF-8',
-						type:'post',
-						url:'logIn',
-						/* data:{"m_id":m_id, "m_pwd":m_pwd},  */
-						data:JSON.stringify(data),
-						dataType:'json',
-						success:function(data){	
-							console.log(data)	
-						 	  if(data=="0"){
-					    		alert("아이디 또는 패스워드가 다릅니다.");
-					    	 }else if(data=="1"){
-					    		 location.href="memberInfo";
-					    	 }else if(data=="2") {
-					    		 location.href="erpmain"; 
-					    	 }   
-						}, 
-						error:function(error){
-							alert("error");
-						console.log(error);				
-					}
-						
-					}); 
-					
-			  } 
+
+			if(data["m_id"]==="" || data["m_pwd"===""]){
 				
+				alert("ID또는PASSWARD를 입력 하세요");
+				
+			}else{
+			$.ajax({
+				contentType : 'application/json; charset=UTF-8',
+				type : 'post',
+				url : 'logIn',
+				/* data:{"m_id":m_id, "m_pwd":m_pwd},  */
+				data : JSON.stringify(data),
+				dataType : 'json',
+				success : function(data) {
+					console.log(data)
+					
+					 if (data == "0") {
+						//location.href = "memberList";
+						 location.href = "adminMain";
+					} else if (data == "1") {
+						location.href = "erpmain";
+					}
+				},
+				error : function(error) {
+					alert("아이디또는 패스워드가 다릅니다.");
+					console.log(error);
+				}
+
+			});
+			}
+		};
 	</script>
 </body>
 </html>
