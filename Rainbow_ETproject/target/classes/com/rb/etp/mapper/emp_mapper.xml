@@ -11,7 +11,7 @@
 	</select>
 
 
-<insert id="insertemp"  parameterType="com.rb.etp.bean.EmpDto">
+<insert id="insertemp"  parameterType="com.rb.etp.bean2.EmpDto">
 		INSERT INTO EMP VALUES(#{e_id}, 
 							 #{e_code}, 
 							 #{e_name}, 

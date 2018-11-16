@@ -69,39 +69,21 @@ vertical-align:middle;
 <body>
 
 	<div id="wrapper">
-<<<<<<< HEAD
-		<jsp:include page="nav.jsp" flush="false" />
-=======
+
 
 		<!-- Navigation -->
 		<nav>
 		<jsp:include page="menuInclude/Navigation.jsp" />
 		</nav>
->>>>>>> branch 'master' of https://github.com/Sickrabbids/HelloErp.git
-		<!-- Page Content -->
+
+	
 		<div id="page-wrapper">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12" id='main'>
 
-<<<<<<< HEAD
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
 								<h1>게시판 넣기 </h1>
 				
->>>>>>> branch 'master' of https://github.com/Sickrabbids/HelloErp.git
 					</div>
 					<!-- /.col-lg-12 -->
 				</div>
@@ -127,10 +109,7 @@ vertical-align:middle;
 
 	<!-- Custom Theme JavaScript -->
 	<script src="resources/Bootstrap/dist/js/sb-admin-2.js"></script>
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'master' of https://github.com/Sickrabbids/HelloErp.git
 </body>
 
 </html>
