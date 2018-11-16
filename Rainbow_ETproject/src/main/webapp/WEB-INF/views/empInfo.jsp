@@ -34,24 +34,60 @@
 </style>
 </head>
 <body>
-<script type="text/javascript">
+	<script type="text/javascript">
 
+	window.onload=function()
+	{
+		onejo=document.getElementById('code').value;
+	 	$('#hideonejo').val(onejo);
+		$('#rehi2').hide();
+		$("#rehi").hide();
+		var re2="${re}";
+		if(re2=='퇴직'){
+		$('#tir').html('복직');	
+		$('#proven').html('퇴직증명서');
+		$("#rehi").show();
+		$('#rehi2').show();
+		}
+	}
 
 
 function retire(code,state){
-	
-	console.log(state);
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1; //January is 0!
+	var yyyy = today.getFullYear();
+	if(dd<10) {
+	    dd='0'+dd
+	} 
+	if(mm<10) {
+	    mm='0'+mm
+	} 
+	today = yyyy+'-'+mm+'-'+dd;
+	var reday=today+'일부로 복직'
 	var e_state=state;
 	var e_code=code;
+	var reason='복직';
 	console.log(e_code);
+	if(e_state==1){
+	reason=prompt('퇴직사유를 입력해주세요', '개인사유');
+	reday=prompt('퇴직일을 입력해주세요', today);
+	}
+	console.log(reason);
+	console.log(reday);
 	$.ajax({
 		type : 'POST',
-		url : 'retire?e_code=' + e_code+"&state="+e_state,
+		url : 'retire?e_code=' + e_code+"&state="+e_state+"&reason="+reason+"&reday="+reday,
 		dataType : 'html',
 		success : function(data) {
-			  alert(data);
-        	  window.opener.location.reload();
-        	  location.reload(true); 
+		/* 	  alert(data); */
+			  console.log(data.re_date);
+			  console.log(data.re_reason);
+			  var redate=data.re_data
+			  window.opener.location.reload();
+        	  location.reload(true);
+        	  $('#rereason').val(data.re_data);
+        	  $('#reday').val('re_date');
 		},
 		error : function(error) {
 			console.log(error);
@@ -72,37 +108,11 @@ function popupOpen(code) {
  $('#code').change(function(){
 		trust=0;
 	});
-var up=document.getElementById('upup');
-up.addEventListener("click",formcheck);
 
-window.onload=function(){
+/* window.onload=function(){
 	onejo=document.getElementById('code').value;
  	$('#hideonejo').val(onejo);
- }
-function update(){
-        /*  var form = $('#reform')[0];
-         var formData = new FormData(form);
-         formData.append("fileObj", $("#FILE_TAG")[0].files[0]);
-         formData.append("fileObj2", $("#FILE_TAG2")[0].files[0]); */
-
-
-    var hide=document.getElementById('hideonejo').value;     
-	 console.log(hide);
-         var params = jQuery("#reform").serialize(); 
-	 $.ajax({
-		type : 'POST',
-		url : './update',
-		data: params,
-		dataType : 'json',
-		success : function(data) {
-			console.log(data); 
-		},
-		error : function(error) {
-			console.log(error);
-		}
-	});
-
-}
+ } */
 
 
 var trust=0;
@@ -224,6 +234,91 @@ var request = new XMLHttpRequest();
 			reader.onload = function (e) { 
 				$('#imfplace').attr('src', e.target.result); }
 			reader.readAsDataURL(input.files[0]); } }
+	function update(){
+        /*  var form = $('#reform')[0];
+         var formData = new FormData(form);
+         formData.append("fileObj", $("#FILE_TAG")[0].files[0]);
+         formData.append("fileObj2", $("#FILE_TAG2")[0].files[0]); */
+
+	 var code= document.getElementById('code').value;
+		var name= document.getElementById('name').value;
+		var pnum= document.getElementById('pnum').value;
+		var hire= document.getElementById('hire').value;
+		var phone= document.getElementById('phone').value;
+		var address= document.getElementById('address').value;
+		var state= document.getElementById('state').value;
+		var state= document.getElementById('state').value;
+		var pay= document.getElementById('pay').value;
+		
+		
+		if(code =='' || code ==null){
+			alert("코드는 반드시 입력해주세요")
+			document.getElementById('code').focus();
+			return false;
+		}else if (name == "" || name == null) {
+			alert("이름은 반드시 입력해주세요");
+			document.getElementById('name').focus();
+			return false;
+		
+		}else if (pnum == "" || pnum == null) {
+			alert("주민번호는 반드시 입력해주세요");
+			document.getElementById('pnum').focus();
+			return false;
+		
+		}else if (hire == "" || hire == null) {
+			alert("입사일은 반드시 입력해주세요");
+			document.getElementById('hire').focus();
+			return false;
+		}else if (phone == "" || phone == null) {
+			alert("전화번호는 반드시 입력해주세요");
+			document.getElementById('phone').focus();
+			return false;
+		}else if (address == "" || address == null) {
+			alert("주소는 반드시 입력해주세요");
+			document.getElementById('address').focus();
+			return false;
+		}else if (state == "" || state == null) {
+			alert("재직상태는 반드시 입력해주세요");
+			document.getElementById('state').focus();
+			return false;
+		}else if (pay == "" || pay == null) {
+			alert("기본급은 반드시 입력해주세요");
+			document.getElementById('pay').focus();
+			return false;
+		}else if (trust!=1) {
+			alert("중복검사는 반드시 하시기 바랍니다.");
+			document.getElementById('code').focus();
+			return false;
+		}else if (trust!=1) {
+			alert("중복검사는 반드시 하시기 바랍니다.");
+			document.getElementById('code').focus();
+			return false;
+		}
+    var hide=document.getElementById('hideonejo').value;     
+	 console.log(hide);
+          /* var params = jQuery("#reform").serialize(); */  
+          var formData = new FormData($("#reform")[0]); 
+          $.ajax({
+              type : 'post',
+              url : 'update',
+              data : formData,
+              dataType : 'html',
+              processData : false,
+              contentType : false,
+               success : function(data) {
+             	  alert(data);
+             	  window.opener.location.reload();
+             	 /*  self.close(); */
+               },
+              error : function(error) {
+             	 console.log('실패');
+             	 console.log(error);
+                  console.log(error.status);
+              }
+          });
+
+
+}
 </script>
 	<div class="container">
 		<div class="row">
@@ -239,8 +334,8 @@ var request = new XMLHttpRequest();
 						<div class="media"></div>
 					</div>
 					<form class="form-inline" role="form" action="empinsert"
-						id='reform' method="post" onsubmit="return formcheck();"
-						enctype="multipart/form-data" name='reform'>
+						id='reform' method="post" 
+						enctype="multipart/form-data" >
 
 						<table class="table">
 							<tr>
@@ -257,17 +352,14 @@ var request = new XMLHttpRequest();
 
 							<tr align="center">
 								<td colspan="1" rowspan="4" align="left"
-									style="padding-left: 50px">
-									<input type=file name='file1'
-									style='display: none;' onchange="readURL(this);"> <input type='text' name='file2'
-									id='file2' style='display: none;'> <img
-									src='${pic}'
-									border='0'
-									onclick='document.all.file1.click(); document.all.file2.value=document.all.file1.value' id='imfplace' style="height: 140px; width: 130px">
-		 							<%-- 	<img src='${pic}'
-									style="height: 140px; width: 130px" id='empimg'><input type="file"
-									id='fileup' name='imgfile' onchange="readURL(this);"> --%>
-								</td>
+									style="padding-left: 50px"><input type=file name='file1'
+									style='display: none;' onchange="readURL(this);"> <input
+									type='text' name='file2' id='file2' style='display: none;'>
+									<img src='${pic}' border='0'
+									onclick='document.all.file1.click(); document.all.file2.value=document.all.file1.value'
+									id='imfplace' style="height: 140px; width: 130px">  <%-- <img src='${pic}'
+									style="height: 140px; width: 130px" id='imfplace'><input type="file"
+									id='fileup' name='imgfile' onchange="readURL(this);"> --%> </td>
 								<td colspan="2" align="left"><font size=4>사 원 번 호 :
 								</font> <input type="text" class="form-control" size="15" name='e_code'
 									placeholder="필수입력사항입나디." id='code' maxlength="10"
@@ -278,16 +370,6 @@ var request = new XMLHttpRequest();
 								</font> <input type="text" class="form-control" size="15" name='e_name'
 									placeholder="필수입력사항입나디." id='name' maxlength="15"
 									value='${eDto.e_name}'></td>
-							</tr>
-							<tr>
-								<td colspan="2" align="left"><font size=4>주 민 번 호 :
-								</font> <input type="text" class="form-control" size="15"
-									value='${eDto.e_idnum}' name='e_idnum' placeholder="필수입력사항입나디."
-									id='pnum' maxlength="14"></td>
-								<td colspan="2" align="left"><font size=4>입 사 일 : </font> <input
-									type="text" class="form-control" size="15" name='e_indate'
-									placeholder="필수입력사항입나디." id='hire' maxlength="30"
-									value='${eDto.e_indate}'></td>
 							</tr>
 							<tr>
 								<td colspan="2" align="left"><font size=4>이 메 일 : </font> <input
@@ -307,20 +389,33 @@ var request = new XMLHttpRequest();
 									name='e_banknum' maxlength="20" value='${eDto.e_banknum}'></td>
 							</tr>
 							<tr>
+								<td colspan="2" align="left"><font size=4>입 사 일 : </font> <input
+									type="text" class="form-control" size="15" name='e_indate'
+									placeholder="필수입력사항입나디." id='hire' maxlength="30"
+									value='${eDto.e_indate}' ></td>
+
+								<td colspan="2" align="left"><font size=4>주 민 번 호 :
+								</font> <input type="text" class="form-control" size="15"
+									value='${eDto.e_idnum}' name='e_idnum' placeholder="필수입력사항입나디."
+									id='pnum' maxlength="14"></td>
+							<tr id='rehi'>
+								<td  align='center' style="vertical-align: middle;"></td>
+								<td colspan="2" align="left"><font size=4>퇴 사 일 : </font>
+									<input id='reday' type="text" class="form-control" size="15"
+									name='endday' maxlength="15" value='${redate}'  ></td>
+								<td colspan="2" align="left" id='rebtn' >
+								</td>
+							</tr>
+							<tr id='rehi2'> 	
+									<td colspan="5" align="center"><font size=4>퇴직사유: </font> <input
+									type="text" class="form-control" size="95" name='endreason'
+									 id='rereason' maxlength="450"  value='${reason}'
+									></td></tr>
+							<tr>
 								<td colspan="5" align="center"><font size=4>주 소: </font> <input
 									type="text" class="form-control" size="95" name='e_address'
 									placeholder="필수입력사항입나디." id='address' maxlength="100"
 									value='${eDto.e_address}'></td>
-							</tr>
-							<tr  id='rehi'>
-							
-							<td colspan="2" align="right"><font size=4>퇴 사 일 : </font> <input
-									id='rank' type="text" class="form-control" size="20"
-									name='rank_name' maxlength="15" value='${eDto.rank_name}'></td>
-								<td colspan="3" align="center"><font size=4>퇴 직 사 유 :
-								</font> <input type="text" class="form-control" size="20"
-									maxlength="450" id='dept' name='dept_name'
-									value='${eDto.dept_name}' ></td>
 							</tr>
 							<tr>
 								<td colspan="5" align="center"><font size=4>비 고: </font> <input
@@ -348,10 +443,14 @@ var request = new XMLHttpRequest();
 							</tr>
 							<tr align="right">
 								<td colspan="4">
-									<a href="javascript:popupOpen('${eDto.e_code}','${eDto.e_state}');" class="btn btn-danger btn-lg" style="margin: 40px" id='proven'>재직증명서</a>
-									<input type="button" role="button" class="btn btn-danger btn-lg" value="수 정" onclick="update();" id='upup'>
-							        <a href="javascript:retire('${eDto.e_code}','${eDto.e_state}');" class="btn btn-danger btn-lg" style="margin: 40px" id='tir'>퇴사</a>						
-									</td>
+								<a href="javascript:popupOpen('${eDto.e_code}','${eDto.e_state}');"
+									class="btn btn-danger btn-lg" style="margin: 40px" id='proven'>재직증명서</a>
+									<input type="button" role="button"
+									class="btn btn-danger btn-lg" value="수 정" onclick="update()"
+									id='upup'> <a
+									href="javascript:retire('${eDto.e_code}','${eDto.e_state}');"
+									class="btn btn-danger btn-lg" style="margin: 40px" id='tir'>퇴사</a>
+								</td>
 							</tr>
 
 
@@ -363,18 +462,6 @@ var request = new XMLHttpRequest();
 		</div>
 	</div>
 </body>
-<script>
-window.onload=function()
-{
-	$("#rehi").hide();
-	var re2="${re}";
-	if(re2=='퇴직'){
-	$('#tir').html('복직');	
-	$('#proven').html('퇴직증명서');
-	$("#rehi").show();
-	}
-}
-</script>
 </html>
 
 

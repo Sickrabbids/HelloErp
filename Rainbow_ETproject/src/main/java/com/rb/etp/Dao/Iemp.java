@@ -23,7 +23,7 @@ public interface Iemp {
 
 	public EmpDto empInfo2(String code);
 
-	public EmpDto certificateEmpForm(String e_code);
+	public Map<String, String> certificateEmpForm(Map<String, String> umap);
 
 
 	public void insertimg(HashMap<String, String> fMap);
@@ -31,6 +31,14 @@ public interface Iemp {
 	public HashMap<String, String> empInfoPic(HashMap<String, String> pMap);
 
 	public void retire(HashMap<String, String> rMap);
+
+	public void retireReason(HashMap<String, String> rMap);
+
+	public void retireclear(HashMap<String, String> rMap);
+
+	public HashMap<String, String> empRtire(HashMap<String, String> pMap);
+
+	public void updatepic(Map<String, String> umap);
 
 
 	

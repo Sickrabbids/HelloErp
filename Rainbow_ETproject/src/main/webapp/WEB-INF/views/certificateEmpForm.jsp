@@ -11,16 +11,16 @@
 </style>
 </head>
 <body>
-이름:<input type="text" name='e_name' value='${eDto.e_name}' ><br>
-주민번호:<input type="text" name='e_idnum' value='${eDto.e_idnum}'><br>
-주소:<input type="text" name='e_address'value='${eDto.e_address}' ><br>
-사업자등록번호:<input type="text" name='m_cno'value='${eDto.m_cno}'><br>
-직급:<input type="text" name='rank_name'value='${eDto.rank_name}'><br>
-부서명<input type="text" name='dept_name'value='${eDto.dept_name}'><br>
- 전화번호:<input type="text" name='e_phone' value='${eDto.e_phone}'><br>
-입사일:<input type="text" name='e_indate'value='${eDto.e_indate}'><br>
-회사명<input type="text" name='m_cname'value='${eDto.m_cname}'><br>
- 대표:<input type="text" name='m_cboss'value='${eDto.m_cboss}'>
+이름:<input type="text" name='e_name' value='${eDto.E_NAME}' ><br>
+주민번호:<input type="text" name='e_idnum' value='${eDto.E_IDNUM}'><br>
+주소:<input type="text" name='e_address'value='${eDto.E_ADDRESS}' ><br>
+사업자등록번호:<input type="text" name='m_cno'value='${eDto.M_CNO}'><br>
+직급:<input type="text" name='rank_name'value='${eDto.RANK_NAME}'><br>
+부서명<input type="text" name='dept_name'value='${eDto.DEPT_NAME}'><br>
+ 전화번호:<input type="text" name='e_phone' value='${eDto.E_PHONE}'><br>
+입사일:<input type="text" name='e_indate'value='${eDto.E_INDATE}'><br>
+회사명<input type="text" name='m_cname'value='${eDto.M_CNAME}'><br>
+ 대표:<input type="text" name='m_cboss'value='${eDto.M_CBOSS}'>
  </body>
 </html>
 

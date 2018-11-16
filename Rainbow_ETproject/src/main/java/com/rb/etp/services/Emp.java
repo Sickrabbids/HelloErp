@@ -1,5 +1,6 @@
 package com.rb.etp.services;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,8 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.rb.etp.Dao.Iemp;
 import com.rb.etp.bean.EmpDto;
 
@@ -109,18 +112,41 @@ public class Emp {
 		return result;
 	}
 
-	public boolean update(Map<String, String> umap) {
-		boolean result = ie.update(umap);
+	public boolean update(MultipartHttpServletRequest multi, HashMap<String, String> pMap) {
+		 String root = multi.getSession().getServletContext().getRealPath("/");
+	       String path = root+"resources/upload/";
+	       System.out.println(path);
+	       boolean result = ie.update(pMap);
+	       HashMap<String, String> pMap2=ie.empInfoPic(pMap);		//이미 있는 사진 검색후 결과로 삭제  사진을 첨부했을때만 작동하게 처리해야됨 퇴사자 퇴사이유 수정 처리해야됨
+	       for ( String key : pMap2.keySet() ) {
+	    	    System.out.println("방법1) key : " + key +" / value : " + pMap2.get(key));
+	    	}
+	    	System.out.println("=======================");
+	    	String fin=path+pMap2.get("EP_SYS_PHOTO");
+	    	File file = new File(fin);
+
+			if(file.exists() == true){
+
+			file.delete();
+
+		}
+	       ie.updatepic(pMap);
 		return result;
 	}
 
 	public ModelAndView empInfo2(String code, HttpServletRequest req) {
 		mav = new ModelAndView();
 		HashMap<String, String> pMap = new HashMap<>();
+		HashMap<String, String> pMap2 = new HashMap<>();
 		String ep_id = (String) req.getSession().getAttribute("m_id");
 		pMap.put("ep_id", ep_id);
 		pMap.put("ep_code", code);
 		pMap = ie.empInfoPic(pMap);
+		pMap.put("RE_ID", ep_id);
+		pMap2 = ie.empRtire(pMap);
+
+
+		
 		String oriName = pMap.get("EP_ORI_PHOTO");
 		String sysName = pMap.get("EP_SYS_PHOTO");
 		if(oriName.equals("사진없음")) {
@@ -137,16 +163,26 @@ public class Emp {
 		if(eDto.getE_state().equals("2")) {
 			mav.addObject("re", "퇴직");
 		}
+		if(pMap2!=null) {
+			mav.addObject("reason", pMap2.get("RE_REASON"));
+			mav.addObject("redate", pMap2.get("RE_DATE"));
+		}
 		mav.addObject("eDto", eDto);
 		mav.setViewName("empInfo");
 		return mav;
 	}
 
-	public ModelAndView certificateEmpForm(String e_code) {
+	public ModelAndView certificateEmpForm(HttpServletRequest req,Map<String, String> umap) {
 		mav = new ModelAndView();
-		EmpDto eDto = null;
-		eDto = ie.certificateEmpForm(e_code);
-		mav.addObject("eDto", eDto);
+		String e_id = (String) req.getSession().getAttribute("m_id");
+		umap.put("m_id", e_id);
+		umap = ie.certificateEmpForm(umap);
+		for ( String key : umap.keySet() ) {
+		    System.out.println("방법1) key : " + key +" / value : " + umap.get(key));
+		}
+		System.out.println("=======================");
+		
+		mav.addObject("eDto", umap);
 		mav.setViewName("certificateEmpForm");
 		return mav;
 	}
@@ -174,17 +210,24 @@ public class Emp {
 		ie.insertimg(fMap);
 	}
 
-	public void retire(String e_code, HttpServletRequest req, String e_state) {
+	public String retire(String e_code, HttpServletRequest req, String e_state, String re_date, String re_reason) {
 		HashMap<String, String> rMap = new HashMap<>();
 		String e_id = (String) req.getSession().getAttribute("m_id");
 		rMap.put("e_id", e_id);
 		rMap.put("e_code", e_code);
-		if(e_state.equals("1")) {
+		rMap.put("re_date", re_date);
+		rMap.put("re_reason", re_reason);
+		ie.retireclear(rMap);
+		if(e_state.equals("1")) {   							//재직중인 사원을 퇴직처리
 			e_state="2";
-		}else {
+		}else if (e_state.equals("2")) {						//퇴직사원 복직처리
 			e_state="1";
 		}
+		ie.retireReason(rMap);
 		rMap.put("e_state", e_state);
 		ie.retire(rMap);
+		Gson gson=new Gson();
+		String json=gson.toJson(rMap);
+		return json;
 	}
 }

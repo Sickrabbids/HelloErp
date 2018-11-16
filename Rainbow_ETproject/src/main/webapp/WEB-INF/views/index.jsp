@@ -154,7 +154,7 @@ height: 10%;
 		
 		 
 		$('.carousel').carousel({
-		    interval: 300
+		    interval: 5000
 		}); 
 		
 	</script> 

@@ -17,8 +17,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.rb.etp.bean.EmpDto;
 import com.rb.etp.services.Emp;
+
+import ch.qos.logback.core.net.SyslogOutputStream;
 
 
 
@@ -82,12 +85,45 @@ public class H_Controller {
 	}
 	
 	@RequestMapping(value = "/update", produces = "application/json; charset=utf8")  		//직원정보 수정
-	public  @ResponseBody String update (HttpServletRequest req, @RequestParam Map<String,String> umap) {
-		mav=new ModelAndView();
-		emp.update(umap);
-		return null;
+	public  @ResponseBody String update (MultipartHttpServletRequest multi, @RequestParam HashMap<String,String> pMap) {
+		String ep_id = (String) multi.getSession().getAttribute("m_id");
+		pMap.put("ep_code", pMap.get("e_code"));
+		pMap.put("ep_id", ep_id);
+		  String root = multi.getSession().getServletContext().getRealPath("/");
+	       String path = root+"resources/upload/";
+		String sysName = ""; 
+		Iterator<String> files = multi.getFileNames();
+		 File dir = new File(path);
+	        if(!dir.isDirectory()){
+	            dir.mkdir();
+	        }   
+		while(files.hasNext()){
+	            String uploadFile = files.next();
+	            MultipartFile mFile = multi.getFile(uploadFile);
+	            String oriName = mFile.getOriginalFilename();
+	            System.out.println("실제 파일 이름 : " +oriName);
+	            sysName = System.currentTimeMillis()+"."
+	                    +oriName.substring(oriName.lastIndexOf(".")+1);
+	             System.out.println("시스템파일이름:"+sysName);
+	             if(oriName.equals("") || oriName==null) {
+	     			oriName="사진없음";
+	     		}
+	             
+	             pMap.put("sysName", sysName);
+	             pMap.put("oriName", oriName);
+	          
+	             try {
+		                mFile.transferTo(new File(path+sysName));
+		            } catch (Exception e) {
+		                e.printStackTrace();
+		            }
+
+		emp.update(multi,pMap);
 	}
-	
+		
+		String result="success";
+	        return result;
+	}
 	@RequestMapping(value = "/ajmulticheck", produces = "application/json; charset=utf8")   //사번 중복체크 
 	public  @ResponseBody int ajmulticheck (HttpServletRequest req) {
 		String e_code=req.getParameter("code");
@@ -96,13 +132,9 @@ public class H_Controller {
 	}
 	
 	@RequestMapping(value = "/certificateEmpForm",produces = "application/json; charset=utf8")   //재직증명서
-	public ModelAndView certificateEmpForm(HttpServletRequest req) {
+	public ModelAndView certificateEmpForm(HttpServletRequest req,@RequestParam Map<String,String> umap) {
 		mav=new ModelAndView();
-		String e_code=req.getParameter("e_code");
-		System.out.println("------------------------------------------");
-		System.out.println(e_code);
-		System.out.println("-------------------------------------------");
-		mav=emp.certificateEmpForm(e_code);
+		mav=emp.certificateEmpForm(req, umap);
 		return mav;
 	}
 	
@@ -154,9 +186,12 @@ public class H_Controller {
 		public  @ResponseBody String retire(HttpServletRequest req) {
 		String e_code=req.getParameter("e_code");
 		String state=req.getParameter("state");
-		emp.retire(e_code,req,state);
-		String result="success";	
-		 return result;
+		String re_date=req.getParameter("reday");
+		String re_reason=req.getParameter("reason");
+		System.out.println(re_date);
+		System.out.println(re_reason);
+		String json=emp.retire(e_code,req,state,re_date,re_reason);
+		 return json;
 		}
 	}
 
