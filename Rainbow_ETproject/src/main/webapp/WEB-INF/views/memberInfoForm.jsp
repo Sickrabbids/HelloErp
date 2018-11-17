@@ -9,64 +9,91 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="resources/L_Validation/jquery.validate.min.js"></script> 
+<!-- Bootstrap Core JavaScript -->
+<script src="resources/test/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="resources/test/vendor/metisMenu/metisMenu.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="resources/test/dist/js/sb-admin-2.js"></script>
+
+<!-- Bootstrap Core CSS -->
+<link href="resources/test/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<!-- MetisMenu CSS -->
+<link href="resources/test/vendor/metisMenu/metisMenu.min.css"
+	rel="stylesheet">
+
+<!-- Custom CSS -->
+<link href="resources/test/dist/css/sb-admin-2.css" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link href="resources/test/vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+
+
 </head>
 <body>
 	<form> 
-		<table>
-			<tr>
-				<td>회사명</td>
-				<td><input type="text" name="m_cname" value="${mb.m_cname}"></td>
-			</tr>
-			<tr>
-				<td>대표자</td>
-				<td><input type="text" name="m_cboss" value="${mb.m_cboss}"></td>
-			</tr>
-			<tr>
-				<td>업종</td>
-				<td><input type="text" name="m_cubusiness" value="${mb.m_cubusiness}"></td>
-			</tr>
-			<tr>
-				<td>종목</td>
-				<td><input type="text" name="m_ckind" value="${mb.m_ckind}"></td>
-			</tr>
-			<tr>
-				<td>사업자등록번호</td>
-				<td><input type="text" name="m_cno" value="${mb.m_cno}"></td>
-			</tr>
-			<tr>
-				<td>회사전화번호</td>
-				<td><input type="text" name="m_cphone" value="${mb.m_cphone}"></td>
-			</tr>
-			<tr>
-				<td>주소</td>
-				<td><input type="text" name="m_caddress"
-					value="${mb.m_caddress}"></td>
-			</tr>
-			<tr>
-				<td>ID</td>
-				<td><input type="text" name="m_id" value="${mb.m_id}" readonly="readonly"></td>
-				
-			</tr>
-			<tr>
-				<td>PASSWORD</td>
-				<td><input type="text" name="m_pwd" value="${mb.m_pwd}" readonly="readonly"></td>
-			</tr>
-			<tr>
-				<td>관리자</td>
-				<td><input type="text" name="m_cmname" value="${mb.m_cmname}"></td>
-			</tr>
-			<tr>
-				<td>관리자전화번호</td>
-				<td><input type="text" name="m_cmphone" value="${mb.m_cmphone}"></td>
-			</tr>
-			<tr>
-				<td>관리자 이메일</td>
-				<td><input type="text" name="m_cmemail" value="${mb.m_cmemail}"></td>
-			</tr>
-			<tr>
-				<td><input type="submit" value="수정" onclick="memberUpdate();" /></td>
-			</tr>
-		</table>
+		<div class="col-md-12" style="margin: 20px" id="memberList">
+			<table class="table table-striped">
+				<tr>
+					<td>회사명</td>
+					<td><input type="text" name="m_cname" value="${mb.m_cname}"></td>
+				</tr>
+				<tr>
+					<td>대표자</td>
+					<td><input type="text" name="m_cboss" value="${mb.m_cboss}"></td>
+				</tr>
+				<tr>
+					<td>업종</td>
+					<td><input type="text" name="m_cubusiness" value="${mb.m_cubusiness}"></td>
+				</tr>
+				<tr>
+					<td>종목</td>
+					<td><input type="text" name="m_ckind" value="${mb.m_ckind}"></td>
+				</tr>
+				<tr>
+					<td>사업자등록번호</td>
+					<td><input type="text" name="m_cno" value="${mb.m_cno}"></td>
+				</tr>
+				<tr>
+					<td>회사전화번호</td>
+					<td><input type="text" name="m_cphone" value="${mb.m_cphone}"></td>
+				</tr>
+				<tr>
+					<td>주소</td>
+					<td><input type="text" name="m_caddress" style="width:400px"
+						value="${mb.m_caddress}"></td>
+				</tr>
+				<tr>
+					<td>ID</td>
+					<td><input type="text" name="m_id" value="${mb.m_id}" readonly="readonly"></td>
+					
+				</tr>
+				<tr>
+					<td>PASSWORD</td>
+					<td><input type="text" name="m_pwd" value="${mb.m_pwd}" readonly="readonly"></td>
+				</tr>
+				<tr>
+					<td>관리자</td>
+					<td><input type="text" name="m_cmname" value="${mb.m_cmname}"></td>
+				</tr>
+				<tr>
+					<td>관리자전화번호</td>
+					<td><input type="text" name="m_cmphone" value="${mb.m_cmphone}"></td>
+				</tr>
+				<tr>
+					<td>관리자 이메일</td>
+					<td><input type="text" name="m_cmemail" value="${mb.m_cmemail}"></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="right"><input type="submit" value="수정" onclick="memberUpdate();" /></td>
+				</tr>
+			</table>
+		</div>
  	</form>
 </body>
 <script>
@@ -97,6 +124,7 @@
 				if(data===true){
 					opener.location.reload(); 
 				} 
+				alert('수정완료');
 			},error: function(error){
 				alert("다시입력해주세요.");
 				console.log(error);

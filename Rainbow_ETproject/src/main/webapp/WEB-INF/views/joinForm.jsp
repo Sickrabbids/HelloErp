@@ -164,7 +164,7 @@
 
 								<td><font size=4>관리자 이메일 :</font></td>
 								<td><input type="text" class="form-control"
-									name="m_cmemail"></td>
+									name="m_cmemail" ></td>
 							</tr>
 
 							<tr align="center">
@@ -273,6 +273,8 @@ $(function(){
 		var m_id = $('input[name=m_id]').val();
 		idCheckOn = $('input[name=idCheckOn]').val();
 		
+		
+		
 		if (m_id == null || m_id == "") {
 			alert("아이디를 입력해주세요");
 		} else {
@@ -342,6 +344,25 @@ $(function(){
 		var m_cmphone = $('input[name=m_cmphone]').val();
 		var m_cmemail = $('input[name=m_cmemail]').val();
 		
+		 if(m_cubusiness==null || m_cubusiness==""){
+			 $('input[name=m_cubusiness]').val('미입력');
+		 }
+	 	 
+	 	 if(m_ckind==null || m_ckind==""){
+	 		$('input[name=m_ckind]').val('미입력');
+	 	 }
+	 	 
+	 	 if(m_cmname==null || m_cmname=="" ){
+	 		$('input[name=m_cmname]').val('미입력');
+	 	 }
+	 	 
+	 	 if(m_cmphone==null || m_cmphone==""){
+	 		$('input[name=m_cmphone]').val('미입력');
+	 	 }
+	 	 
+	 	 if(m_cmemail==null || m_cmemail==""){
+	 		$('input[name=m_cmemail]').val('미입력');
+	 	 } 
 
 		if (idCheckOn == '0') {
 			alert("아이디 중복 체크를 해주세요");

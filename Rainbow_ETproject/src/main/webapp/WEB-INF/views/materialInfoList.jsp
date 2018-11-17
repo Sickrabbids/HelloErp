@@ -83,7 +83,7 @@
 								</h3>
 							</div>
 							<form action="test1" method="post" onsubmit="return abc()">
-								<table class="table" id='tta'>
+								<table class="container-fluid" id='tta'>
 									<thead>
 										<tr>
 											<th>사진</th>

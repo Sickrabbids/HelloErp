@@ -42,7 +42,7 @@
   	  
   	<![CDATA[  
   	SELECT * FROM (SELECT ROWNUM RN, M_ID, M_CNAME, M_CMNAME, M_CMPHONE FROM MEMBER WHERE ROWNUM<=#{contentPage})
-	WHERE RN>=#{page}  
+	WHERE RN>#{page}  
   	]]>
   	
  </select>
