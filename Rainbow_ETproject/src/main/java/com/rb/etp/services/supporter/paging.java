@@ -15,6 +15,7 @@ public String pagingcount(double count) {
 	make.append("<li><a href='#'onclick='paging(1)' aria-label='Previous'> <span aria-hidden='true'>&laquo;</span></a></li>");
 	for(int i=0;i<totalcount ;i++) {
 		make.append("<li><a href='#' onclick='paging("+(i+1)+")'>"+(i+1)+"</a></li>");
+	/*	make.append("<li><a href='materialInfoList?pageNum="+(i+1)+"&ajaxNum=1'>"+(i+1)+"</a></li>");*/
 	}
 	make.append("<li><a href='#' onclick='paging("+totalcount+")' aria-label='Next'> <span aria-hidden='true'>&raquo;</span></a></li>");
 	return make.toString();

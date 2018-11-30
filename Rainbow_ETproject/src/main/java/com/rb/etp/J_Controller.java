@@ -42,8 +42,6 @@ public class J_Controller {
 	@RequestMapping(value = "materialInfoListAjax", produces = "application/text; charset=utf8")
 	public String materialInfoListAjax() {
 		jcs.materListCalling();
-		/*String test=(String) request.getAttribute("s_json2");*/
-		//set 한 리퀘스트영역에있는녀석을 뱉어줄때...
 		return (String) request.getAttribute("s_json2");
 	}
 	
@@ -52,15 +50,15 @@ public class J_Controller {
 		mav=new ModelAndView();
 		mav=jms.materialInfo();
 		request.setAttribute("test", request.getParameter("test"));
-		
 		return mav;
+		
 	}
 	@RequestMapping(value= "material_U_I_D", produces="application/text; charset=utf8")
 	public ModelAndView materialUP_IN_DE(J_material jm,MultipartHttpServletRequest multi){
 		System.out.println("오십니까!!!=========================================");
-		mav=new ModelAndView();
-		mav=jms.material_U_I_D(jm,multi);
-		return mav;
+		mav = new ModelAndView();
+		mav =jms.material_U_I_D(jm,multi);
+		return mav; 
 	}
 	
 	

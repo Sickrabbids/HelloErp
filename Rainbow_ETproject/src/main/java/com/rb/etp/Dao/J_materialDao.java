@@ -21,11 +21,14 @@ public interface J_materialDao {
 	public String testtest(String cd);
 
 
-	public HashMap<String,String> materialInfo(@Param("p1") String id,@Param("p2") String code);
+	public HashMap<String,Object> materialInfo(@Param("p1") String id,@Param("p2") String code);
 	
-	public boolean materialInsert(J_material jm);
+	public int materialInsert(J_material jm);
 	
-	public boolean materialUpdate(J_material jm);
+	public int materialUpdate(J_material jm);
 	
-	public boolean materialDelete(J_material jm);
+	public int materialDelete(J_material jm);
+
+
+	public String materialCheck(J_material jm);
 }

@@ -156,18 +156,17 @@ window.onload = function () {
 		
 		var $S_Json= ${s_json}
 		materList($S_Json);
-		
+			
 		var a=$('.vavava');
 		console.log(a);
 		for(var i=0;i<a.length;i++){
 			console.log(i+"=번째"+a[i].text);
 		}
 		
-	 	$('.vavava').click(function(){
-	 		var a=$(this).text();
-			alert("진짜됨???"+a);
-			window.open("materialInfoGodFrom?GOD_CODE="+encodeURI(a), "품목정보", "width=650, height=700, left=680, top=50,status=0,location=no,menubar=no  ");
-		}); 
+	 	 
+	}
+	function test34(a){
+		window.open("materialInfoGodFrom?GOD_CODE="+a, "품목정보", "width=650, height=700, left=680, top=50,status=no,location=no,menubar=no,toolbar=no,scrollbars=no");
 	}
 
 	function addMater(){
@@ -176,10 +175,11 @@ window.onload = function () {
 		
 	}
 	
+ function paging(pageNum){
+		
 
-	function paging(pageNum){
-
-		$.ajax({
+				
+ 		$.ajax({
 			url: "materialInfoListAjax",
 			type: "POST",
 			data: {"pageNum":pageNum},
@@ -188,44 +188,60 @@ window.onload = function () {
 				console.log(result);
 	
 				 materList(JSON.parse(result));
-				
+				 $('#pagging').html("${pagging}");
 			},
 			error: function (err){
 			console.log("에러!!"+err);				
 			}
-			         });
-	}
+			         }); 
+ 		}
+	
 
 	function materList($S_Json){
 		var my_tbody = document.getElementById('GODMATEREAL');
-		$('#GODMATEREAL').children().remove();
-		 var makerow="";
-				for(var index in $S_Json){
-	
+		/* $('#GODMATEREAL').children().remove(); */
+		
+		var makerow="";
+		
+		
+			for(var index in $S_Json){
+				console.log(index);
 				makerow +="<tr class='testtt'>";				
 				makerow +="<td><input type='text' value="+$S_Json[index]['MA_ORI_PHOTO']+" ></td>";
-				makerow +='<td><a href="#" class=\'vavava\' >'+$S_Json[index]['GOD_CODE']+'</a></td>';
+				makerow +="<td><a href=\"javascript:test34(\'"+$S_Json[index]['GOD_CODE']+"\')\">"+$S_Json[index]['GOD_CODE']+"</a></td>";
+				/* makerow +='<td><a href="#" class=\'vavava\' >'+$S_Json[index]['GOD_CODE']+'</a></td>'; */
 				makerow +="<td><input type='text' value="+$S_Json[index]['GOD_NAME']+" ></td>";
 				makerow +="<td><input type='text' value="+$S_Json[index]['GOD_SAFTESTOCK']+" ></td>";
 				makerow +="<td><input type='text' value="+$S_Json[index]['GOD_STOCK']+" ></td>";
 				makerow +="<td><input type='text' value="+$S_Json[index]['GOD_PRICE']+" ></td>";
 				makerow +="<td><input type='text' value='"+$S_Json[index]['HAB']+"'></td>";
+				
 				var test=$S_Json[index]['GOD_KIND'];
+				
 				if(test==1){
+					
 				makerow +="<td><input type='text' value='자재'></td>"
-	
+				
 				}
+				
 				else if(test==2){
+					
 				makerow +="<td><input type='text' value='식자재'></td>"
 	
 				}
+				
 				else if(test==3){
+					
 				makerow +="<td><input type='text' value='생산품'></td>"
 	
 				}
+				
 				makerow +="</tr>";
+				console.log(makerow);
 				}
-			my_tbody.innerHTML = makerow;
+				console.log(makerow);
+				my_tbody.innerHTML = makerow;
+			
 	}
 		
 		 	function add() {
@@ -250,7 +266,9 @@ window.onload = function () {
 				cell5.innerHTML = "<input type='text' name='d' value='' class='t'>";
 				cell6.innerHTML = "<input type='text' name='e' value='' class='t'>";
 				
-			}
+			
+		 	}
+		 	
 		 	
 	</script>
 </body>

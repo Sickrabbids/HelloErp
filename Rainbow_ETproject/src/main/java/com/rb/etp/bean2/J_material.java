@@ -4,21 +4,29 @@ public class J_material {
 
 	String GOD_ID;
 	String GOD_CODE;
-	String GOD_NAME;
-	Integer GOD_PRICE;
-	Integer GOD_SAFTESTOCK;
-	String GOD_KIND;
-	String GOD_BIGO;
-	String GOD_STATE;
-	Integer GOD_STOCK;
-	String GOD_PHOTO;
-	String GOD_STANDARD;
-	String GOD_UNIT;
-	String pageInfo;
+	String GOD_ORICODE=null;
+	String GOD_NAME=null;
+	Integer GOD_PRICE=0;
+	Integer GOD_SAFTESTOCK=0;
+	String GOD_KIND="1";
+	String GOD_BIGO=null;
+	String GOD_STATE=null;
+	Integer GOD_STOCK=0;
+	String GOD_PHOTO=null;
+	String GOD_STANDARD=null;
+	String GOD_UNIT=null;
+	
+	
+	
+	
+	public String getGOD_ORICODE() {
+		return GOD_ORICODE;
+	}
 
-	
-	
-	
+	public void setGOD_ORICODE(String gOD_ORICODE) {
+		GOD_ORICODE = gOD_ORICODE;
+	}
+
 	public String getGOD_ID() {
 		return GOD_ID;
 	}
@@ -27,13 +35,6 @@ public class J_material {
 		GOD_ID = gOD_ID;
 	}
 
-	public String getPageInfo() {
-		return pageInfo;
-	}
-
-	public void setPageInfo(String pageInfo) {
-		this.pageInfo = pageInfo;
-	}
 
 	public String getGOD_CODE() {
 		return GOD_CODE;

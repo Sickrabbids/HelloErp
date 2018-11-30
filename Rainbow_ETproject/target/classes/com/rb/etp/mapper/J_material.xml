@@ -16,29 +16,27 @@ WHERE GOD_ID=#{value}
 	<select id="listCount" resultType="int" parameterType="String">
 	select count(*) 
 	from GODMATEREAL 
-	where GOD_STATE=1
 	</select>
 	
 <!-- 	where GOD_ID=#{id}  -->
 	
 	<select id="materListCalling" resultType="HashMap" parameterType="HashMap">
 	<![CDATA[
-	select * from
-	(select 
-	rownum rn,
-	GOD_CODE,
-	GOD_NAME,
-	GOD_SAFTESTOCK,
-	GOD_PRICE,
-	(GOD_PRICE*GOD_STATE)AS HAB,
-	GOD_STOCK,
-	GOD_KIND,
-	GOD_STATE 
-	from GODMATEREAL 
-	WHERE GOD_STATE=1 
-	AND rownum<=${a})
-	where rn>${b} 
-		]]>
+	select * FROM
+    (select ROWNUM RN,a.* from
+        (select ROWNUM,
+            GOD_CODE,
+            GOD_NAME,
+            GOD_SAFTESTOCK,
+            GOD_PRICE,
+            (GOD_PRICE*GOD_STOCK)AS HAB,
+            GOD_STOCK,
+            GOD_KIND
+                FROM GODMATEREAL
+                    order by ROWNUM DESC) a
+            where ROWNUM<=#{a})
+		WHERE RN>#{b}
+		]]> 
 	</select>
 	<!-- WHERE GODMATEREAL.GOD_ID=#{id} --> 
 	
@@ -66,12 +64,42 @@ WHERE GOD_ID=#{value}
 		#{GOD_SAFTESTOCK},
 		#{GOD_KIND},
 		#{GOD_BIGO},
-		#{GOD_STATE},
 		#{GOD_STOCK},
 		#{GOD_PHOTO},
 		#{GOD_STANDARD},
-		#{GOD_UNIT});
+		#{GOD_UNIT})
 	</insert>
+	<update id="materialUpdate" parameterType="j_material">
 	
+	UPDATE GODMATEREAL SET GOD_CODE=#{GOD_CODE},
+						   GOD_NAME=#{GOD_NAME},
+						   GOD_PRICE=#{GOD_PRICE},
+						   GOD_SAFTESTOCK=#{GOD_SAFTESTOCK},
+						   GOD_KIND=#{GOD_KIND},
+						   GOD_BIGO=#{GOD_BIGO},
+					       GOD_STOCK=#{GOD_STOCK},
+						   GOD_PHOTO=#{GOD_PHOTO},
+						   GOD_STANDARD=#{GOD_STANDARD},
+						   GOD_UNIT=#{GOD_UNIT}
+					 	   where GOD_CODE=#{GOD_ORICODE}
+	</update>
+	
+	
+	<delete id="materialDelete" parameterType="J_material">
+	delete from  GODMATEREAL 
+<!-- 	       where GOD_ID=#{GOD_ID} 
+	       and   GOD_CODE=#{GOD_CODE}
+ --> 
+	       where GOD_CODE=#{GOD_CODE}
+	</delete>
+	
+	<select id="materialCheck" resultType="String" parameterType="j_material">
+	<![CDATA[
+	select GOD_PHOTO from GODMATEREAL
+	where GOD_CODE=#{GOD_ORICODE}
+	]]>
+	</select>
+
+
 
 </mapper>
