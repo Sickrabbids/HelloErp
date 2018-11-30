@@ -103,10 +103,11 @@ public class L_memberService {
 		//현재페이지
 	/*	int page = Integer.parseInt(request.getParameter("page"));*/
 		String page = request.getParameter("page");
-	/*	System.out.println("나와라"+page);*/
+		System.out.println("나와라"+page);
 		if(page==null){
 			page="1";
 		}
+		System.out.println("나와라"+page);
 		pm.setPage(Integer.parseInt(page));//jsp에서 받아올것
 		pm.getPage();
 		if(pm.getTotalPage()<pm.getPage()){
@@ -148,10 +149,8 @@ public class L_memberService {
 		
 		/*int indexStart =(pm.getPage()-1)*10+1;	*/
 		int indexPage = (pm.getPage()-1)*10;
-		int contentPage = ((indexPage)+10)-1;
-	
-		System.out.println("왜이러냐?"+indexPage);
-		System.out.println("안나오는 이유가 뭐냐"+contentPage);
+		int contentPage = ((indexPage)+10);
+
 		memberList = mDao.L_memberList_Dao(indexPage, contentPage);
 	
 		hm.put("list", memberList);		
@@ -168,6 +167,7 @@ public class L_memberService {
 
 		mav = new ModelAndView();
 		String view;
+		
 		boolean mj = mDao.L_memberJoin_Dao(mb);
 
 		if (mj == true) {

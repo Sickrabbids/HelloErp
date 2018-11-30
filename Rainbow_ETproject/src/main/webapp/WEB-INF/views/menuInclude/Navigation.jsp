@@ -16,7 +16,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">RB-erp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+			<a class="navbar-brand" href="/etp">RB-erp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
 		</div>
 		<!-- 상단메뉴 -->
 		<ul class="nav navbar-nav">
@@ -78,10 +78,10 @@
 					<i class="fa fa-caret-down"></i></a>
 
 				<ul class="dropdown-menu dropdown-user">
-					<li><a href="#"><i class="fa fa-user fa-fw"></i>내정보</a></li>
+					<li><a href="#" onclick="myPage('${m_id}')"><i class="fa fa-user fa-fw"></i>내정보</a></li>
 					<li><a href="#"><i class="fa fa-gear fa-fw"></i>회원탈퇴</a></li>
 					<li class="divider"></li>
-					<li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i>로그아웃</a></li>
+					<li><a href="login.html"  onclick="logOut(); return false" ><i class="fa fa-sign-out fa-fw"></i>로그아웃</a></li>
 				</ul> <!-- /.dropdown-user --></li>
 			<!-- /.dropdown -->
 		</ul>
@@ -160,5 +160,16 @@ function materialurlGo(Url){
 		alert('틀렷씁니다');
 	}	
 }
+//로그아웃
+function logOut() {
+	location.href = "logOut";
+}
+//내정보
+function myPage(id){
+	console.log(id);
+	window.open("memberInfo?m_id="+id, "memberInfo", "height=600, width=800" );
+}
 </script>
+
+
 </html>
